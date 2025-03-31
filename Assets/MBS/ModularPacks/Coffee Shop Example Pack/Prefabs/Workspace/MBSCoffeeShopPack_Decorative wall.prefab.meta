@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 218df648df87a3641bb47f0c6656b17c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Workspace/MBSCoffeeShopPack_Decorative
+    wall.prefab
+  uploadId: 609877

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6bf2abeb0aac447ea959647032950dd6
+timeCreated: 1679794449
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/View/Input/Tools/Pointer_Mode.cs
+  uploadId: 609877

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9acadc3878038344f8bf3bf46836078e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Floor/MBSCoffeeShopPack_Floor_Inner_triangle.prefab
+  uploadId: 609877

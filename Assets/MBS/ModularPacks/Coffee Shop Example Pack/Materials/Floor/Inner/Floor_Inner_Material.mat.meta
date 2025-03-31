@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: de8798207ca28b540b10935d41df44ff
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Materials/Floor/Inner/Floor_Inner_Material.mat
+  uploadId: 609877

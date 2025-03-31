@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b736353d81f5564e8bd004b6a8dc8fd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Examples/Demo Scene 1/MBS Ground Plane Material.mat
+  uploadId: 609877

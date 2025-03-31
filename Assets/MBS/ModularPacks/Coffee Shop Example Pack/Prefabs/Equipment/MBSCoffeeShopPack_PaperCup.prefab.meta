@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ff665788aa3bc634081c581bc519a147
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Equipment/MBSCoffeeShopPack_PaperCup.prefab
+  uploadId: 609877

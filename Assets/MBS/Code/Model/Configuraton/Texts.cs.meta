@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6288e65594b87e441af76f3f60065eb4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Model/Configuraton/Texts.cs
+  uploadId: 609877

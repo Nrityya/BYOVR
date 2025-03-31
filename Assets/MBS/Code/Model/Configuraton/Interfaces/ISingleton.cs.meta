@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1d5bfd1aa3d2282498adeb944bd2104b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Model/Configuraton/Interfaces/ISingleton.cs
+  uploadId: 609877

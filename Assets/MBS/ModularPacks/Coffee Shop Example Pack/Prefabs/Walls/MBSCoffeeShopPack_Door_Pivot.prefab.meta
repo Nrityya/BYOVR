@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2a54cba9195d6914ba01a3f0c88d803d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Walls/MBSCoffeeShopPack_Door_Pivot.prefab
+  uploadId: 609877

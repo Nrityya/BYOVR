@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8550caff93e847d48bc50321f954f266
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Materials/Equipment/Equipment_Glass_Material.mat
+  uploadId: 609877

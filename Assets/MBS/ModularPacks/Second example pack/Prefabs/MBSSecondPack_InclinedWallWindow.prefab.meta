@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 71a120b537adc534b8752ca2932e9453
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Second example pack/Prefabs/MBSSecondPack_InclinedWallWindow.prefab
+  uploadId: 609877

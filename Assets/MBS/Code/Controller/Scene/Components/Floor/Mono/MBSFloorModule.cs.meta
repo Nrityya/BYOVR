@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 16381e40321b419f98622506f182803e
+timeCreated: 1679989530
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Controller/Scene/Components/Floor/Mono/MBSFloorModule.cs
+  uploadId: 609877

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 60c2a76a03299f741befaef89e5a9318
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/View/Asset System/Decorator/DecoratorGroupEditor_Window.cs
+  uploadId: 609877

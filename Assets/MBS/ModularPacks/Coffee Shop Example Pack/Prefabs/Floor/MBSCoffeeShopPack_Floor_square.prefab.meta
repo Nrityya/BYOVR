@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83bc02582eb98544293b951e3f9f311b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Floor/MBSCoffeeShopPack_Floor_square.prefab
+  uploadId: 609877

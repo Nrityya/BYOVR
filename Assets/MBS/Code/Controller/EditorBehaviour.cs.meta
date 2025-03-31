@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 2c8118aaba494af1874923992e961e68
+timeCreated: 1682321507
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Controller/EditorBehaviour.cs
+  uploadId: 609877

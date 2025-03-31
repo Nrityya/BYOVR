@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 33ab1001f5d841469fcb7eaacf7cdcf3
+timeCreated: 1681469698
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Controller/Scene/Components/Decorator/Decorator_RotationMode.cs
+  uploadId: 609877

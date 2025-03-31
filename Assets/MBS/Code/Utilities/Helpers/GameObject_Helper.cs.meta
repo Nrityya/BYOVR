@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9c0f16b9a758efa4282beea179218dba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Utilities/Helpers/GameObject_Helper.cs
+  uploadId: 609877

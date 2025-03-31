@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 31f2c7d2d6d0bf0468df7de421301146
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/InternalData/UIToolkit/PackManager/Uss/PackManager_Styles.uss
+  uploadId: 609877

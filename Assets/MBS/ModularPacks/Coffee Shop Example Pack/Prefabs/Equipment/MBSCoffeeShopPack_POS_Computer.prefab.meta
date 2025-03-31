@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d73de4830a94fc840b66a60cb9090daa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Equipment/MBSCoffeeShopPack_POS_Computer.prefab
+  uploadId: 609877

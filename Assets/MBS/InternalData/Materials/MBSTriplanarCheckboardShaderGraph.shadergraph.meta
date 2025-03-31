@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: be8caa7463b8a454d949a31093fb51af
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/InternalData/Materials/MBSTriplanarCheckboardShaderGraph.shadergraph
+  uploadId: 609877

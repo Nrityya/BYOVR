@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 45429c66cb8f7364fbb43bb5bac80085
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Equipment/MBSCoffeeShopPack_Refrigirator.prefab
+  uploadId: 609877

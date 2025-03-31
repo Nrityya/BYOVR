@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 552ab653bb7cf9a499591555350592a9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Examples/Demo Scene 1/MBSDemoSceneSkybox.mat
+  uploadId: 609877

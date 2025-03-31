@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eab22e14e7d74f943bfff3c51159a386
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Materials/Misc/Emissive.mat
+  uploadId: 609877

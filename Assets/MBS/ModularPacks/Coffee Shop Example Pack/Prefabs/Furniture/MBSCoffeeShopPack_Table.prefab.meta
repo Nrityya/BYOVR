@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 07b7b317529f3024fbba7e98883d935d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Furniture/MBSCoffeeShopPack_Table.prefab
+  uploadId: 609877

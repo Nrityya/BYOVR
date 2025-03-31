@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83b19bada90e3554fa9adbde2c00878e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Second example pack/Prefabs/MBSSecondPack_StableBigDoor.prefab
+  uploadId: 609877

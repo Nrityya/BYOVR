@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ea0ffb04b64788841ae3d71420c0d03d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/View/Scene/Editors/Walls/WallModule_Modifier_Editor.cs
+  uploadId: 609877

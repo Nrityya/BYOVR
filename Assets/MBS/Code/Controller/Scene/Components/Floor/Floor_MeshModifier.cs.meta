@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: dd8fdcdc5a974cb7862ec80ab6e5d796
+timeCreated: 1680150487
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Controller/Scene/Components/Floor/Floor_MeshModifier.cs
+  uploadId: 609877

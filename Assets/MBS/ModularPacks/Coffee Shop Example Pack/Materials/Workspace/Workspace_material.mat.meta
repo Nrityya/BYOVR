@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a76f51ce43dfe6f43b68bfe0aa556948
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Materials/Workspace/Workspace_material.mat
+  uploadId: 609877

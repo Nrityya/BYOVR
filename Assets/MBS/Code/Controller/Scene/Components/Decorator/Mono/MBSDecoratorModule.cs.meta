@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6689fa09930643aa827422f7a8340d49
+timeCreated: 1681218173
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Controller/Scene/Components/Decorator/Mono/MBSDecoratorModule.cs
+  uploadId: 609877

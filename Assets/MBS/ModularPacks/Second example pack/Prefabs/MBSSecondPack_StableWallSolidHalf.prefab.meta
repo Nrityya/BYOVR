@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 763a992ca58fddd4684bc4e19b2b8d0e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Second example pack/Prefabs/MBSSecondPack_StableWallSolidHalf.prefab
+  uploadId: 609877

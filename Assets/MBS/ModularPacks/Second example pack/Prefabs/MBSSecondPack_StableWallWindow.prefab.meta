@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 05302916337b4ad48b8482325562fd2f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Second example pack/Prefabs/MBSSecondPack_StableWallWindow.prefab
+  uploadId: 609877

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ee14adf56f977654d88692a714b8a483
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Equipment/MBSCoffeeShopPack_CupOnPlate.prefab
+  uploadId: 609877

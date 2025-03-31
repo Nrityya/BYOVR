@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d6ff587759f4385478fac65c93e19b52
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/InternalData/UIToolkit/Construction/Construction_ListView_Item.uxml
+  uploadId: 609877

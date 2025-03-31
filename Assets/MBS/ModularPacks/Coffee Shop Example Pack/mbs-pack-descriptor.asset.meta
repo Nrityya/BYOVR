@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 671b46cfe69048f44ab904761592d52c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4900000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/mbs-pack-descriptor.asset
+  uploadId: 609877

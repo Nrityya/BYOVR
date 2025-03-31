@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 26a6c109702e4f54dbc801e3a670cc5c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Second example pack/Prefabs/MBSSecondPack_StableWall_Inner_Door.prefab
+  uploadId: 609877

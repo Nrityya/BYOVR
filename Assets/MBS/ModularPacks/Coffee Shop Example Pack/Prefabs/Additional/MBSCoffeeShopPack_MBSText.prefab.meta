@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a2686cd0400b1b94fad4a2f001c4a837
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Additional/MBSCoffeeShopPack_MBSText.prefab
+  uploadId: 609877

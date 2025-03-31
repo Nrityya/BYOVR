@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8c5392d8e0b8d5d4bb8f08d536b93176
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Code/Utilities/Helpers/Text_Helper.cs
+  uploadId: 609877

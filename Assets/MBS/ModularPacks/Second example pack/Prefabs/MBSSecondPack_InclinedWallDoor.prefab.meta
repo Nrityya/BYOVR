@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 04879a9a074a934478585e7c73440679
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/ModularPacks/Second example pack/Prefabs/MBSSecondPack_InclinedWallDoor.prefab
+  uploadId: 609877

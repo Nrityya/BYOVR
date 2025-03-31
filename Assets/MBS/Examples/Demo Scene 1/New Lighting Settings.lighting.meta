@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 08f956337501b81409900c4ad3c37cdd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 208505
+  packageName: MBS - Modular Building System
+  packageVersion: 0.2f
+  assetPath: Assets/MBS/Examples/Demo Scene 1/New Lighting Settings.lighting
+  uploadId: 609877
