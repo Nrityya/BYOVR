@@ -409,6 +409,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.34f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.34f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.34f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/CustomScript/Interactable.cs"
 "Assets/CustomScript/karaoke_menu.cs"
 "Assets/CustomScript/Teleporting.cs"
 "Assets/LittleFriends-CartoonAnimals-Lite/Demo/Script/Demo.cs"
@@ -422,6 +423,7 @@
 "Assets/MiLabCardboardExtension/Scripts/XRCardboard/XRCardboardInputSettings.cs"
 "Assets/MiLabCardboardExtension/Scripts/XRCardboard/XRCardboardReticle.cs"
 "Assets/MiLabCardboardExtension/Scripts/XRCardboard/XRCardboardStartup.cs"
+"Assets/QuickOutline/Scripts/Outline.cs"
 -langversion:9.0
 /deterministic
 /optimize+
