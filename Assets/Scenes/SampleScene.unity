@@ -5438,6 +5438,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3778802712381926709, guid: ffca2b8d1bbe05d408cce3d564c67a23, type: 3}
+--- !u!1 &262001893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7287137020755404948, guid: 186741bf17cbb0e4fa3ef06daa1f190f, type: 3}
+  m_PrefabInstance: {fileID: 1758464811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &264804637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36294,8 +36299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  cameraObj: {fileID: 1740091431}
-  joyStickMode: 1
+  cameraObj: {fileID: 262001893}
+  joyStickMode: 0
 --- !u!1001 &1743438515
 PrefabInstance:
   m_ObjectHideFlags: 0
