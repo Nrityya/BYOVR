@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Threading;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Outline))]
 [RequireComponent(typeof(Rigidbody))]
@@ -11,6 +14,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public float throwForceMax = 20f;
     public float throwForceMin = 5f;
     public float throwMaxChargeTime = 2f;
+    public GameObject chargeBarPrefab;
 
     public bool throwable = true;
     public bool grabbable = true;
@@ -58,7 +62,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public bool ShouldBeSelected(PointerEventData pointerEventData)
     {
         if (IsGrabButtonDown()) return true;
-        if (isGrabbed) return IsThrowButtonDown() || IsThrowButtonUp();
+        if (isGrabbed) return IsThrowButtonDown();
         return false;
     }
 
@@ -100,13 +104,16 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         isGrabbed = true;
         rigidbodyComponent.useGravity = false;
         rigidbodyComponent.linearVelocity = Vector3.zero;
-        rigidbodyComponent.constraints = RigidbodyConstraints.FreezeRotation;
+        // rigidbodyComponent.constraints = RigidbodyConstraints.FreezeRotation;
+        //add angular dampening to the rigidbody
+        rigidbodyComponent.angularDamping = 15f;
     }
 
     public void Released()
     {
         rigidbodyComponent.useGravity = true;
         rigidbodyComponent.constraints = RigidbodyConstraints.None;
+        rigidbodyComponent.angularDamping = 0.05f;
         isGrabbed = false;
     }
 
@@ -126,20 +133,45 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
         else if (!RigidbodyConstrained)
         {
-            rigidbodyComponent.constraints = RigidbodyConstraints.FreezeRotation;
+            // rigidbodyComponent.constraints = RigidbodyConstraints.FreezeRotation;
+            //unsure if this is ever used now            
         }
     }
-
     private IEnumerator ThrowCoroutine()
     {
-        float throwForce = Time.time;
-        // TODO: start ui animation coroutine here
+        Debug.Log("Beginning Throw for " + gameObject.name);
+        GameObject bar = (GameObject)Instantiate(chargeBarPrefab, transform.position, Quaternion.identity, transform);
+        UnityEngine.UI.Image chargeBarComponent = bar.transform.GetComponentsInChildren<UnityEngine.UI.Image>()[2];
+        Color c = Color.yellow;
 
-        yield return new WaitUntil(IsThrowButtonUp);
-        throwForce = Mathf.Min((Time.time - throwForce) * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
-        // Debug.Log("Throwing " + gameObject.name + " with force: " + throwForce);
+        float i = 0;
+        while (!IsThrowButtonUp())
+        {   
+            if (i > throwMaxChargeTime) 
+            {
+                i = throwMaxChargeTime;
+            } 
+            else
+            {   
+                i += Time.deltaTime;
+            }
+            float t = Mathf.Lerp(1, 0, i / throwMaxChargeTime);
+            float shakeSpeed = 0.008f*(1-t);
+            // is there a more efficient way to do this?
+            bar.transform.position = this.transform.position + playerCamera.transform.right * Random.Range(-shakeSpeed, shakeSpeed) + playerCamera.transform.up * Random.Range(-shakeSpeed, shakeSpeed);
+            bar.transform.LookAt(playerCamera.transform.position);
+            bar.transform.Rotate(0, 180, 0);
+            c.g = t;
+            chargeBarComponent.color = c;
+            chargeBarComponent.fillAmount = 1-t;
+
+            yield return null;
+        }
+        float throwForce = Mathf.Min(i * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
+        Debug.Log("Throwing " + gameObject.name + " with force: " + throwForce);
         rigidbodyComponent.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
         Released();
+        Destroy(bar);
     }
 
     private bool IsGrabButtonDown()
