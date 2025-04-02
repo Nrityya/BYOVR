@@ -76,7 +76,7 @@ public class XRCardboardInputModule : PointerInputModule
             onStartHover?.Invoke(gazeTime);
         }
 
-        if ((Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || Input.GetButtonDown(settings.ClickInput))
+        if (IsDynamicallySelected(currentTarget, pointerEventData) || (Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || Input.GetButtonDown(settings.ClickInput))
         {
             ExecuteEvents.ExecuteHierarchy(currentTarget, pointerEventData, ExecuteEvents.pointerClickHandler);
             currentTargetClickTime = float.MaxValue;
@@ -92,4 +92,25 @@ public class XRCardboardInputModule : PointerInputModule
         hovering = false;
         onEndHover?.Invoke();
     }
+
+    bool IsDynamicallySelected(GameObject selectedObj, PointerEventData pointerEventData)
+    {
+        if (selectedObj == null) return false;
+        IDynamicSelectable selectable;
+        try
+        {
+            selectable = selectedObj.GetComponent<IDynamicSelectable>();
+        }
+        catch (NullReferenceException)
+        {
+            return false;
+        }
+        if (selectable == null) return false;
+        return selectable.ShouldBeSelected(pointerEventData);
+    }
+}
+
+public interface IDynamicSelectable
+{
+    bool ShouldBeSelected(PointerEventData pointerEventData);
 }
