@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public float throwForceMax = 20f;
     public float throwForceMin = 5f;
     public float throwMaxChargeTime = 2f;
+    public GameObject chargeBarPrefab;
 
     public bool throwable = true;
     public bool grabbable = true;
@@ -60,7 +62,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public bool ShouldBeSelected(PointerEventData pointerEventData)
     {
         if (IsGrabButtonDown()) return true;
-        if (isGrabbed) return IsThrowButtonDown() || IsThrowButtonUp();
+        if (isGrabbed) return IsThrowButtonDown();
         return false;
     }
 
@@ -135,26 +137,11 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             //unsure if this is ever used now            
         }
     }
-
     private IEnumerator ThrowCoroutine()
     {
-        //consider combining this with chargebar coroutine
-        //this would mean you have to update throwforce every frame, but you have to update something anyway to get the chargebar to work
-        //+ you can use i to get the throw force
-        float throwForce = Time.time;
-        StartCoroutine(ChargeBarCoroutine());
-        yield return new WaitUntil(IsThrowButtonUp);
-        throwForce = Mathf.Min((Time.time - throwForce) * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
-        Debug.Log("Throwing " + gameObject.name + " with force: " + throwForce);
-        rigidbodyComponent.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
-        Released();
-    }
-    private IEnumerator ChargeBarCoroutine()
-    {
-        //fix this garbage (you might have to use sendmessage - this might be a really bad implementation)
-        // GameObject.Find("ChargeBar").SetActive(true);
-        UnityEngine.UI.Image chargeBarComponent = GameObject.Find("Charge").GetComponent<UnityEngine.UI.Image>();
-        GameObject bar = GameObject.Find("ChargeBar");
+        Debug.Log("Beginning Throw for " + gameObject.name);
+        GameObject bar = (GameObject)Instantiate(chargeBarPrefab, transform.position, Quaternion.identity, transform);
+        UnityEngine.UI.Image chargeBarComponent = bar.transform.GetComponentsInChildren<UnityEngine.UI.Image>()[2];
         Color c = Color.yellow;
 
         float i = 0;
@@ -170,6 +157,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             }
             float t = Mathf.Lerp(1, 0, i / throwMaxChargeTime);
             float shakeSpeed = 0.008f*(1-t);
+            // is there a more efficient way to do this?
             bar.transform.position = this.transform.position + playerCamera.transform.right * Random.Range(-shakeSpeed, shakeSpeed) + playerCamera.transform.up * Random.Range(-shakeSpeed, shakeSpeed);
             bar.transform.LookAt(playerCamera.transform.position);
             bar.transform.Rotate(0, 180, 0);
@@ -179,9 +167,11 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
             yield return null;
         }
-        
-        chargeBarComponent.color = Color.yellow;
-        chargeBarComponent.fillAmount = 0;
+        float throwForce = Mathf.Min(i * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
+        Debug.Log("Throwing " + gameObject.name + " with force: " + throwForce);
+        rigidbodyComponent.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
+        Released();
+        Destroy(bar);
     }
 
     private bool IsGrabButtonDown()
