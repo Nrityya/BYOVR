@@ -1,27 +1,20 @@
-using Unity.Netcode;
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     public float moveSpeed = 5f;
 
-
-     void Start()
-    {
-        Debug.Log($"{gameObject.name} spawned - IsOwner: {IsOwner}");
-    }
-
     void Update()
     {
-        if (!IsOwner)
+        // If this PhotonView isn't ours, skip input & movement.
+        if (!photonView.IsMine)
             return;
 
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-        Debug.Log($"Input detected: moveX = {moveX}, moveZ = {moveZ}");
-
-        Vector3 movement = new Vector3(moveX, 0, moveZ) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        // Only the local player reaches this point:
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        Vector3 move = new Vector3(x, 0, z) * moveSpeed * Time.deltaTime;
+        transform.Translate(move);
     }
-
 }
