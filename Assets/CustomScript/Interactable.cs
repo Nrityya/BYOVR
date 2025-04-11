@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Threading;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Outline))]
 [RequireComponent(typeof(Rigidbody))]
@@ -39,6 +36,8 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
         rigidbodyComponent = gameObject.GetComponent<Rigidbody>();
         rigidbodyComponent.interpolation = RigidbodyInterpolation.Interpolate;
+
+        chargeBarPrefab = Resources.Load<GameObject>("Prefabs/Charge Bar");
     }
 
     void Update()
@@ -62,27 +61,37 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public bool ShouldBeSelected(PointerEventData pointerEventData)
     {
         if (IsGrabButtonDown()) return true;
-        if (isGrabbed) return IsThrowButtonDown();
+        if (isGrabbed) return IsThrowButtonDown() || IsUseButtonDown();
         return false;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         // We can assume one of the desired buttons is pressed
+        
         if (isGrabbed)
         {
             if (IsGrabButtonDown())
             {
                 Released();
             }
-            else if (throwable)
+            else if (IsThrowButtonDown() && throwable)
             {
                 StartCoroutine(ThrowCoroutine());
+            }
+            else if (IsUseButtonDown())
+            {
+                Released();
+                BroadcastMessage("Used", playerCamera, SendMessageOptions.DontRequireReceiver);
             }
         }
         else if (grabbable)
         {
-            Grabbed();
+            if(playerCamera.GetComponent<PlayerControl>().GetPlayerState() == PlayerControl.PlayerState.HoldingCue || playerCamera.GetComponent<PlayerControl>().GetPlayerState() == PlayerControl.PlayerState.HittingCue){
+                playerCamera.BroadcastMessage("Hit", this.gameObject);
+            } else {
+                Grabbed();
+            }
         }
     }
 
@@ -104,8 +113,6 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         isGrabbed = true;
         rigidbodyComponent.useGravity = false;
         rigidbodyComponent.linearVelocity = Vector3.zero;
-        // rigidbodyComponent.constraints = RigidbodyConstraints.FreezeRotation;
-        //add angular dampening to the rigidbody
         rigidbodyComponent.angularDamping = 15f;
     }
 
@@ -139,8 +146,8 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     }
     private IEnumerator ThrowCoroutine()
     {
-        Debug.Log("Beginning Throw for " + gameObject.name);
         GameObject bar = (GameObject)Instantiate(chargeBarPrefab, transform.position, Quaternion.identity, transform);
+        bar.transform.localScale = new Vector3(0.004f, 0.004f, 0.004f)/this.transform.localScale.x;
         UnityEngine.UI.Image chargeBarComponent = bar.transform.GetComponentsInChildren<UnityEngine.UI.Image>()[2];
         Color c = Color.yellow;
 
@@ -157,7 +164,6 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             }
             float t = Mathf.Lerp(1, 0, i / throwMaxChargeTime);
             float shakeSpeed = 0.008f*(1-t);
-            // is there a more efficient way to do this?
             bar.transform.position = this.transform.position + playerCamera.transform.right * Random.Range(-shakeSpeed, shakeSpeed) + playerCamera.transform.up * Random.Range(-shakeSpeed, shakeSpeed);
             bar.transform.LookAt(playerCamera.transform.position);
             bar.transform.Rotate(0, 180, 0);
@@ -168,7 +174,6 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             yield return null;
         }
         float throwForce = Mathf.Min(i * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
-        Debug.Log("Throwing " + gameObject.name + " with force: " + throwForce);
         rigidbodyComponent.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
         Released();
         Destroy(bar);
@@ -192,6 +197,17 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     private bool IsRotateButtonPressed()
     {
         return Input.GetKey(KeyCode.R) || ControllerInputHelper.IsOKPressed();
+    }
+
+    private bool IsUseButtonDown()
+    {   
+        //TODO: change this to an actual input
+        return Input.GetKeyDown(KeyCode.T) || ControllerInputHelper.IsOKPressed();
+    }
+
+    public interface IInteractable
+    {
+        void Used(Camera c);
     }
 }
 
