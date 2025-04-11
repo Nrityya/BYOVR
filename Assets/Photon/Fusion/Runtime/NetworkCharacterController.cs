@@ -41,10 +41,7 @@ namespace Fusion {
     [Header("Character Controller Settings")]
     public float gravity = -20.0f;
     public float jumpImpulse   = 8.0f;
-    public float acceleration  = 10.0f;
-    public float braking       = 10.0f;
     public float maxSpeed      = 2.0f;
-    public float rotationSpeed = 15.0f;
 
     Tick                _initial;
     CharacterController _controller;
@@ -77,27 +74,18 @@ namespace Fusion {
     public void Move(Vector3 direction) {
       var deltaTime    = Runner.DeltaTime;
       var previousPos  = transform.position;
-      var moveVelocity = Data.Velocity;
 
-      direction = direction.normalized;
+      direction = Vector3.ClampMagnitude(direction, 1);
 
-      if (Data.Grounded && moveVelocity.y < 0) {
-        moveVelocity.y = 0f;
+      var moveVelocity = Vector3.zero;
+
+      if (!Data.Grounded) {
+        moveVelocity.y = Data.Velocity.y;
       }
 
       moveVelocity.y += gravity * Runner.DeltaTime;
 
-      var horizontalVel = default(Vector3);
-      horizontalVel.x = moveVelocity.x;
-      horizontalVel.z = moveVelocity.z;
-
-      if (direction == default) {
-        horizontalVel = Vector3.Lerp(horizontalVel, default, braking * deltaTime);
-      } else {
-        horizontalVel      = Vector3.ClampMagnitude(horizontalVel + direction * acceleration * deltaTime, maxSpeed);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Runner.DeltaTime);
-      }
-
+      var horizontalVel = direction * maxSpeed;
       moveVelocity.x = horizontalVel.x;
       moveVelocity.z = horizontalVel.z;
 
