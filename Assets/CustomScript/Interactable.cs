@@ -68,7 +68,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public void OnPointerClick(PointerEventData eventData)
     {
         // We can assume one of the desired buttons is pressed
-        
+
         if (isGrabbed)
         {
             if (IsGrabButtonDown())
@@ -87,9 +87,12 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
         else if (grabbable)
         {
-            if(playerCamera.GetComponent<PlayerControl>().GetPlayerState() == PlayerControl.PlayerState.HoldingCue || playerCamera.GetComponent<PlayerControl>().GetPlayerState() == PlayerControl.PlayerState.HittingCue){
+            if (playerCamera.GetComponent<PlayerControl>().GetPlayerState() == PlayerControl.PlayerState.HoldingCue || playerCamera.GetComponent<PlayerControl>().GetPlayerState() == PlayerControl.PlayerState.HittingCue)
+            {
                 playerCamera.BroadcastMessage("Hit", this.gameObject);
-            } else {
+            }
+            else
+            {
                 Grabbed();
             }
         }
@@ -147,29 +150,30 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     private IEnumerator ThrowCoroutine()
     {
         GameObject bar = (GameObject)Instantiate(chargeBarPrefab, transform.position, Quaternion.identity, transform);
-        bar.transform.localScale = new Vector3(0.004f, 0.004f, 0.004f)/this.transform.localScale.x;
+        bar.transform.localScale = new Vector3(0.004f, 0.004f, 0.004f) / this.transform.localScale.x;
         UnityEngine.UI.Image chargeBarComponent = bar.transform.GetComponentsInChildren<UnityEngine.UI.Image>()[2];
         Color c = Color.yellow;
 
         float i = 0;
         while (!IsThrowButtonUp())
-        {   
-            if (i > throwMaxChargeTime) 
+        {
+            if (i > throwMaxChargeTime)
             {
                 i = throwMaxChargeTime;
-            } 
+            }
             else
-            {   
+            {
                 i += Time.deltaTime;
             }
             float t = Mathf.Lerp(1, 0, i / throwMaxChargeTime);
-            float shakeSpeed = 0.008f*(1-t);
+            float shakeSpeed = 0.008f * (1 - t);
+            // is there a more efficient way to do this?
             bar.transform.position = this.transform.position + playerCamera.transform.right * Random.Range(-shakeSpeed, shakeSpeed) + playerCamera.transform.up * Random.Range(-shakeSpeed, shakeSpeed);
             bar.transform.LookAt(playerCamera.transform.position);
             bar.transform.Rotate(0, 180, 0);
             c.g = t;
             chargeBarComponent.color = c;
-            chargeBarComponent.fillAmount = 1-t;
+            chargeBarComponent.fillAmount = 1 - t;
 
             yield return null;
         }
@@ -200,7 +204,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     }
 
     private bool IsUseButtonDown()
-    {   
+    {
         //TODO: change this to an actual input
         return Input.GetKeyDown(KeyCode.T) || ControllerInputHelper.IsOKPressed();
     }
