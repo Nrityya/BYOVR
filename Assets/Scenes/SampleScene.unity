@@ -40435,18 +40435,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5231390810023686214, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
   m_PrefabInstance: {fileID: 3061284405153082962}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1903841420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244944273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90776777371077e41a0f6839e23d2d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1903841427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40470,23 +40458,6 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &1903841428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244944273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b5a1ff9dee264bfd829a39e6542dcbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _physicsAuthority: 2
-  _physicsTiming: 3
-  ClientPhysicsSimulation: 0
-  DeltaTimeMultiplier: 1
-  SetUnityFixedTimestep: 0
 --- !u!1001 &1917582956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45762,6 +45733,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7106699721736711384, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: Flags
       value: 262145
@@ -45781,20 +45756,13 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 845224601532249367, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
     - {fileID: 8763788525345863415, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
-    - {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
     - {fileID: 7274725899450918282, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2317244638726548505, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1903841420}
-    - targetCorrespondingSourceObject: {fileID: 2317244638726548505, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1903841427}
-    - targetCorrespondingSourceObject: {fileID: 2317244638726548505, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1903841428}
   m_SourcePrefab: {fileID: 100100000, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
 --- !u!33 &3121728756871088149
 MeshFilter:

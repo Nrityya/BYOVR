@@ -13,6 +13,8 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public GameObject clientGroup;
 
+    public Rigidbody itemRigidbodyTarget;
+
     private CharacterController cc;
     private Interactable controlledObject;
 
