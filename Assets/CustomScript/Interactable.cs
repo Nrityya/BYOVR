@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     NetworkObject networkObject;
     public NetworkId NetworkId => networkObject.Id;
 
-    PlayerNetworkController controllingPlayer = null;
+    protected PlayerNetworkController controllingPlayer = null;
     public bool IsControlled => controllingPlayer != null;
 
     private bool initialized = false;
@@ -29,6 +29,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         outlineComponent.OutlineMode = Outline.Mode.OutlineVisible;
 
         networkObject = GetComponent<NetworkObject>();
+        networkObject.Flags = NetworkObjectFlags.V1 | NetworkObjectFlags.AllowStateAuthorityOverride;
     }
 
     public void TakeControl(PlayerNetworkController playerController)
@@ -37,6 +38,7 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         controllingPlayer = playerController;
         playerController.OnObjectTakeControl(this);
         OnTakeControl(playerController);
+        if (playerController.IsLocal) networkObject.RequestStateAuthority();
     }
 
     public void RelieveControl()
@@ -46,15 +48,6 @@ public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     }
 
     protected virtual void OnTakeControl(PlayerNetworkController playerNetworkController)
-    {
-    }
-
-    public virtual ControlledObjectState GetNetworkState()
-    {
-        return new ControlledObjectState();
-    }
-
-    public virtual void UpdateFromNetworkState(NetworkInputData data)
     {
     }
 

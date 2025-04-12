@@ -1,11 +1,11 @@
 
 using System.Collections;
-using Fusion;
+using Fusion.Addons.Physics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(NetworkTransform))]
+[RequireComponent(typeof(NetworkRigidbody3D))]
 [RequireComponent(typeof(ChargeBar))]
 public class GrabInteractable : Interactable
 {
@@ -17,16 +17,13 @@ public class GrabInteractable : Interactable
     public bool rotatable = true;
     public bool throwable = true;
 
-
     Rigidbody rigidbodyComponent;
     ChargeBar chargeBar;
 
-    bool throwCoroutineRunning = false;
-    float throwForceFromCoroutine = 0;
-
+    int grabbedFrameNumber = 0;
     int droppedFrameNumber = 0;
 
-    void Start()
+    public void Start()
     {
         SetupInteractable();
 
@@ -41,59 +38,35 @@ public class GrabInteractable : Interactable
         StartGrab();
     }
 
-    public override ControlledObjectState GetNetworkState()
+    public void Update()
     {
-        var state = new ControlledObjectState()
-        {
-            targetPosition = playerCamera.transform.position + playerCamera.transform.forward * grabOffset,
-            releaseForce = -1 // Negative number means no throwing
-        };
+        if (!IsControlled || !controllingPlayer.IsLocal) return;
 
-        if (throwForceFromCoroutine > 0)
+        // Wait for state authority
+        if (rigidbodyComponent.isKinematic) return;
+
+        var targetPosition = playerCamera.transform.position + playerCamera.transform.forward * grabOffset;
+
+        if (IsGrabButtonDown() && Time.frameCount > grabbedFrameNumber)
         {
-            state.releaseForce = throwForceFromCoroutine;
-            throwForceFromCoroutine = 0;
+            EndGrab();
         }
-        else if (IsGrabButtonDown())
-        {
-            state.releaseForce = 0; // Just drop it
-        }
-        else if (IsThrowButtonDown() && throwable && !throwCoroutineRunning)
+        else if (IsThrowButtonDown() && throwable)
         {
             StartCoroutine(ThrowCoroutine());
         }
 
         if (IsRotateButtonPressed() && rotatable)
         {
-            state.axisX = Input.GetAxis("Mouse X");
-            state.axisY = Input.GetAxis("Mouse Y");
+            var axisX = Input.GetAxis("Mouse X");
+            var axisY = Input.GetAxis("Mouse Y");
+
+            transform.Rotate(playerCamera.transform.forward * -axisX * 5f, Space.World);
+            transform.Rotate(playerCamera.transform.right * axisY * 5f, Space.World);
         }
 
-        return state;
-    }
-
-    public override void UpdateFromNetworkState(NetworkInputData data)
-    {
-        var state = data.controlledObjectState;
-        var offset = state.targetPosition - transform.position;
+        var offset = targetPosition - transform.position;
         rigidbodyComponent.linearVelocity = offset * grabForce;
-
-        if (rotatable && (state.axisX != default || state.axisY != default))
-        {
-            var rightLook = Vector3.Cross(data.lookDirection, Vector3.up).normalized * -1;
-            transform.Rotate(data.lookDirection * -state.axisX * 5f, Space.World);
-            transform.Rotate(rightLook * state.axisY * 5f, Space.World);
-        }
-
-        if (state.releaseForce >= 0)
-        {
-            transform.position = state.targetPosition;
-            EndGrab();
-            if (state.releaseForce > 0)
-            {
-                rigidbodyComponent.AddForce(data.lookDirection * state.releaseForce, ForceMode.Impulse);
-            }
-        }
     }
 
     public override bool ShouldBeSelected(PointerEventData pointerEventData)
@@ -107,6 +80,7 @@ public class GrabInteractable : Interactable
         rigidbodyComponent.useGravity = false;
         rigidbodyComponent.linearVelocity = Vector3.zero;
         rigidbodyComponent.angularDamping = 15f;
+        grabbedFrameNumber = Time.frameCount;
     }
 
     public void EndGrab()
@@ -120,7 +94,6 @@ public class GrabInteractable : Interactable
 
     private IEnumerator ThrowCoroutine()
     {
-        throwCoroutineRunning = true;
         chargeBar.Setup(playerCamera);
 
         float start = Time.realtimeSinceStartup;
@@ -132,9 +105,9 @@ public class GrabInteractable : Interactable
             yield return null;
         }
         float throwForce = Mathf.Min(chargeTime * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
-        throwForceFromCoroutine = throwForce;
+        rigidbodyComponent.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
         chargeBar.Cleanup();
-        throwCoroutineRunning = false;
+        EndGrab();
     }
 
     private bool IsGrabButtonDown()
@@ -155,11 +128,5 @@ public class GrabInteractable : Interactable
     private bool IsRotateButtonPressed()
     {
         return Input.GetKey(KeyCode.R) || ControllerInputHelper.IsOKPressed();
-    }
-
-    private bool IsUseButtonDown()
-    {
-        //TODO: change this to an actual input
-        return Input.GetKeyDown(KeyCode.T) || ControllerInputHelper.IsOKPressed();
     }
 }
