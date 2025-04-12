@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4260436056762191967}
   - component: {fileID: 4124534218157578587}
   m_Layer: 0
-  m_Name: Charge Bar
+  m_Name: ChargeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4124534218157578587
 MonoBehaviour:
   m_ObjectHideFlags: 0

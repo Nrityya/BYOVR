@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(NetworkTransform))]
+[RequireComponent(typeof(ChargeBar))]
 public class GrabInteractable : Interactable
 {
     public float grabForce = 15.0f;
@@ -18,20 +19,21 @@ public class GrabInteractable : Interactable
 
 
     Rigidbody rigidbodyComponent;
-
-    GameObject chargeBarPrefab;
+    ChargeBar chargeBar;
 
     bool throwCoroutineRunning = false;
     float throwForceFromCoroutine = 0;
+
+    int droppedFrameNumber = 0;
 
     void Start()
     {
         SetupInteractable();
 
-        rigidbodyComponent = gameObject.GetComponent<Rigidbody>();
+        rigidbodyComponent = GetComponent<Rigidbody>();
         rigidbodyComponent.interpolation = RigidbodyInterpolation.Interpolate;
 
-        chargeBarPrefab = Resources.Load<GameObject>("Prefabs/Charge Bar");
+        chargeBar = GetComponent<ChargeBar>();
     }
 
     protected override void OnTakeControl(PlayerNetworkController playerNetworkController)
@@ -44,17 +46,21 @@ public class GrabInteractable : Interactable
         var state = new ControlledObjectState()
         {
             targetPosition = playerCamera.transform.position + playerCamera.transform.forward * grabOffset,
-            releaseForce = throwForceFromCoroutine
+            releaseForce = -1 // Negative number means no throwing
         };
-
-        if (IsThrowButtonDown() && throwable && !throwCoroutineRunning)
-        {
-            StartCoroutine(ThrowCoroutine());
-        }
 
         if (throwForceFromCoroutine > 0)
         {
+            state.releaseForce = throwForceFromCoroutine;
             throwForceFromCoroutine = 0;
+        }
+        else if (IsGrabButtonDown())
+        {
+            state.releaseForce = 0; // Just drop it
+        }
+        else if (IsThrowButtonDown() && throwable && !throwCoroutineRunning)
+        {
+            StartCoroutine(ThrowCoroutine());
         }
 
         if (IsRotateButtonPressed() && rotatable)
@@ -79,19 +85,21 @@ public class GrabInteractable : Interactable
             transform.Rotate(rightLook * state.axisY * 5f, Space.World);
         }
 
-        if (state.releaseForce > 0)
+        if (state.releaseForce >= 0)
         {
             transform.position = state.targetPosition;
             EndGrab();
-            rigidbodyComponent.AddForce(data.lookDirection * state.releaseForce, ForceMode.Impulse);
+            if (state.releaseForce > 0)
+            {
+                rigidbodyComponent.AddForce(data.lookDirection * state.releaseForce, ForceMode.Impulse);
+            }
         }
     }
 
     public override bool ShouldBeSelected(PointerEventData pointerEventData)
     {
-        if (IsGrabButtonDown()) return true;
-        if (IsControlled) return IsThrowButtonDown() || IsUseButtonDown();
-        return false;
+        // Don't allow grabbing the same frame that it was dropped
+        return !IsControlled && IsGrabButtonDown() && droppedFrameNumber < Time.frameCount;
     }
 
     public void StartGrab()
@@ -106,44 +114,26 @@ public class GrabInteractable : Interactable
         rigidbodyComponent.useGravity = true;
         rigidbodyComponent.constraints = RigidbodyConstraints.None;
         rigidbodyComponent.angularDamping = 0.05f;
+        droppedFrameNumber = Time.frameCount;
         RelieveControl();
     }
 
     private IEnumerator ThrowCoroutine()
     {
         throwCoroutineRunning = true;
+        chargeBar.Setup(playerCamera);
 
-        // GameObject bar = (GameObject)Instantiate(chargeBarPrefab, transform.position, Quaternion.identity, transform);
-        // bar.transform.localScale = new Vector3(0.004f, 0.004f, 0.004f) / this.transform.localScale.x;
-        // UnityEngine.UI.Image chargeBarComponent = bar.transform.GetComponentsInChildren<UnityEngine.UI.Image>()[2];
-        // Color c = Color.yellow;
-
-        float i = 0;
+        float start = Time.realtimeSinceStartup;
+        float chargeTime = 0;
         while (!IsThrowButtonUp())
         {
-            if (i > throwMaxChargeTime)
-            {
-                i = throwMaxChargeTime;
-            }
-            else
-            {
-                i += Time.deltaTime;
-            }
-            // float t = Mathf.Lerp(1, 0, i / throwMaxChargeTime);
-            // float shakeSpeed = 0.008f * (1 - t);
-            // is there a more efficient way to do this?
-            // bar.transform.position = this.transform.position + playerCamera.transform.right * Random.Range(-shakeSpeed, shakeSpeed) + playerCamera.transform.up * Random.Range(-shakeSpeed, shakeSpeed);
-            // bar.transform.LookAt(playerCamera.transform.position);
-            // bar.transform.Rotate(0, 180, 0);
-            // c.g = t;
-            // chargeBarComponent.color = c;
-            // chargeBarComponent.fillAmount = 1 - t;
-
+            chargeTime = Mathf.Min(Time.realtimeSinceStartup - start, throwMaxChargeTime);
+            chargeBar.UpdateCharge(chargeTime / throwMaxChargeTime);
             yield return null;
         }
-        float throwForce = Mathf.Min(i * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
+        float throwForce = Mathf.Min(chargeTime * (throwForceMax - throwForceMin) / throwMaxChargeTime + throwForceMin, throwForceMax);
         throwForceFromCoroutine = throwForce;
-        // Destroy(bar);
+        chargeBar.Cleanup();
         throwCoroutineRunning = false;
     }
 

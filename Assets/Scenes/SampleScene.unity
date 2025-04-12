@@ -28686,6 +28686,7 @@ GameObject:
   - component: {fileID: 1430705218}
   - component: {fileID: 1430705217}
   - component: {fileID: 1430705216}
+  - component: {fileID: 1430705219}
   m_Layer: 0
   m_Name: TestCube
   m_TagString: Untagged
@@ -28882,6 +28883,18 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &1430705219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430705208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987e8c5714a26b54fa4eecbaad7160aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1431303179
 PrefabInstance:
   m_ObjectHideFlags: 0

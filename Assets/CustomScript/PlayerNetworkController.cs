@@ -103,7 +103,6 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public void OnObjectTakeControl(Interactable obj)
     {
-        if (controlledObject) controlledObject.RelieveControl();
         controlledObject = obj;
     }
 
