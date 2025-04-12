@@ -1,7 +1,7 @@
 using UnityEngine;
 using static Interactable;
 
-public class PoolCueScript : MonoBehaviour, IInteractable
+public class PoolCueScript : MonoBehaviour
 {
     CapsuleCollider capsuleCollider;
     Camera heldPlayerCamera;

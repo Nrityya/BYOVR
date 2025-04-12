@@ -1,7 +1,5 @@
-using System;
 using Fusion;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NetworkCharacterController))]
 public class PlayerNetworkController : NetworkBehaviour
@@ -46,7 +44,7 @@ public class PlayerNetworkController : NetworkBehaviour
         var data = new NetworkInputData()
         {
             moveDirection = moveVec,
-            lookDirection = cameraLook,
+            lookDirection = cameraObj.transform.forward,
             controlledObjectId = default
         };
 
@@ -69,7 +67,8 @@ public class PlayerNetworkController : NetworkBehaviour
             {
                 if (Runner.TryFindObject(data.controlledObjectId, out NetworkObject obj))
                 {
-                    controlledObject = obj.GetComponent<Interactable>();
+                    var interactable = obj.GetComponent<Interactable>();
+                    interactable.TakeControl(this);
                 }
                 else
                 {
@@ -79,20 +78,19 @@ public class PlayerNetworkController : NetworkBehaviour
 
             if (controlledObject)
             {
-                controlledObject.UpdateFromNetworkState(data.controlledObjectState);
+                controlledObject.UpdateFromNetworkState(data);
             }
         }
     }
 
     public void OnObjectSelection(GameObject obj)
     {
-        if (controlledObject != null) return;
+        if (controlledObject) return;
 
         Interactable interactable = obj.GetComponent<Interactable>();
         if (interactable == null || interactable.IsControlled) return;
 
         interactable.TakeControl(this);
-        controlledObject = interactable;
     }
 
     public void OnObjectStartHover(GameObject obj)
@@ -103,8 +101,19 @@ public class PlayerNetworkController : NetworkBehaviour
     {
     }
 
+    public void OnObjectTakeControl(Interactable obj)
+    {
+        if (controlledObject) controlledObject.RelieveControl();
+        controlledObject = obj;
+    }
+
     public void OnObjectRelieveControl(Interactable obj)
     {
         controlledObject = null;
+    }
+
+    public void OnDestroy()
+    {
+        if (controlledObject) controlledObject.RelieveControl();
     }
 }

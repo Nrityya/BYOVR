@@ -13,4 +13,7 @@ public struct NetworkInputData : INetworkInput
 public struct ControlledObjectState : INetworkStruct
 {
     public Vector3 targetPosition;
+    public float axisX;
+    public float axisY;
+    public float releaseForce;
 }
