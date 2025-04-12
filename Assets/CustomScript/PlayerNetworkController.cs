@@ -1,5 +1,7 @@
+using System;
 using Fusion;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NetworkCharacterController))]
 public class PlayerNetworkController : NetworkBehaviour
@@ -13,6 +15,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public GameObject clientGroup;
 
     private NetworkCharacterController _cc;
+    private Interactable controlledObject;
 
     private void Awake()
     {
@@ -26,7 +29,7 @@ public class PlayerNetworkController : NetworkBehaviour
         if (Object.HasInputAuthority) localPlayer = this;
     }
 
-    public NetworkInputData getCurrentInput()
+    public NetworkInputData GetNewNetworkInput()
     {
         Vector3 moveVec = Vector3.zero;
 
@@ -40,17 +43,68 @@ public class PlayerNetworkController : NetworkBehaviour
         moveVec += rightVec * Input.GetAxis("Horizontal");
         moveVec += forwardVec * Input.GetAxis("Vertical");
 
-        return new NetworkInputData()
+        var data = new NetworkInputData()
         {
-            direction = moveVec
+            moveDirection = moveVec,
+            lookDirection = cameraLook,
+            controlledObjectId = default
         };
+
+        if (controlledObject)
+        {
+            data.controlledObjectId = controlledObject.NetworkId;
+            data.controlledObjectState = controlledObject.GetNetworkState();
+        }
+
+        return data;
     }
 
     public override void FixedUpdateNetwork()
     {
         if (GetInput(out NetworkInputData data))
         {
-            _cc.Move(data.direction);
+            _cc.Move(data.moveDirection);
+
+            if (data.controlledObjectId.IsValid && (controlledObject == null || !data.controlledObjectId.Equals(controlledObject.NetworkId)))
+            {
+                if (Runner.TryFindObject(data.controlledObjectId, out NetworkObject obj))
+                {
+                    controlledObject = obj.GetComponent<Interactable>();
+                }
+                else
+                {
+                    Debug.Log("Controlled network object does not have interactable component");
+                }
+            }
+
+            if (controlledObject)
+            {
+                controlledObject.UpdateFromNetworkState(data.controlledObjectState);
+            }
         }
+    }
+
+    public void OnObjectSelection(GameObject obj)
+    {
+        if (controlledObject != null) return;
+
+        Interactable interactable = obj.GetComponent<Interactable>();
+        if (interactable == null || interactable.IsControlled) return;
+
+        interactable.TakeControl(this);
+        controlledObject = interactable;
+    }
+
+    public void OnObjectStartHover(GameObject obj)
+    {
+    }
+
+    public void OnObjectEndHover(GameObject obj)
+    {
+    }
+
+    public void OnObjectRelieveControl(Interactable obj)
+    {
+        controlledObject = null;
     }
 }

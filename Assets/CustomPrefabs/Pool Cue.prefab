@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1591694514052112766}
   - component: {fileID: 8763788525345863415}
   - component: {fileID: 1439408281806800228}
+  - component: {fileID: 8591669962347364491}
+  - component: {fileID: 845224601532249367}
   m_Layer: 0
   m_Name: Pool Cue
   m_TagString: Untagged
@@ -98,6 +100,7 @@ MonoBehaviour:
   throwForceMax: 20
   throwForceMin: 5
   throwMaxChargeTime: 2
+  chargeBarPrefab: {fileID: 0}
   throwable: 1
   grabbable: 1
   rotatable: 1
@@ -124,6 +127,42 @@ CapsuleCollider:
   m_Height: 1.505
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8591669962347364491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317244638726548505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1848006132
+  ObjectInterest: 1
+  Flags: 1
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 845224601532249367}
+  ForceRemoteRenderTimeframe: 0
+--- !u!114 &845224601532249367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317244638726548505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &4260185100813773725
 GameObject:
   m_ObjectHideFlags: 0

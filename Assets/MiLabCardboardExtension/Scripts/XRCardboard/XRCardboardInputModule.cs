@@ -11,6 +11,8 @@ using UnityEngine.XR;
 
 public class XRCardboardInputModule : PointerInputModule
 {
+    public PlayerNetworkController playerController;
+
     [SerializeField]
     XRCardboardInputSettings settings = default;
     [SerializeField]
@@ -60,20 +62,21 @@ public class XRCardboardInputModule : PointerInputModule
         }
         catch (NullReferenceException)
         {
+            StopHovering(currentTarget);
             currentTarget = null;
-            StopHovering();
             return;
         }
 
         if (currentTarget != handler)
         {
+            if (hovering)
+                StopHovering(currentTarget);
             var gazeTime = settings.GazeTime;
             currentTarget = handler;
             currentTargetClickTime = Time.realtimeSinceStartup + gazeTime;
-            if (hovering)
-                StopHovering();
             hovering = true;
             onStartHover?.Invoke(gazeTime);
+            if (playerController) playerController.OnObjectStartHover(currentTarget);
         }
 
         if (IsDynamicallySelected(currentTarget, pointerEventData) || (Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || Input.GetButtonDown(settings.ClickInput))
@@ -81,14 +84,16 @@ public class XRCardboardInputModule : PointerInputModule
             ExecuteEvents.ExecuteHierarchy(currentTarget, pointerEventData, ExecuteEvents.pointerClickHandler);
             currentTargetClickTime = float.MaxValue;
             onClick?.Invoke();
-            StopHovering();
+            StopHovering(currentTarget);
+            if (playerController) playerController.OnObjectSelection(currentTarget);
         }
     }
 
-    void StopHovering()
+    void StopHovering(GameObject target)
     {
         if (!hovering)
             return;
+        if (playerController) playerController.OnObjectEndHover(target);
         hovering = false;
         onEndHover?.Invoke();
     }

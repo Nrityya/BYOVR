@@ -65,7 +65,7 @@ public class BYOVRNetworkRunner : MonoBehaviour, INetworkRunnerCallbacks
     {
         var localPlayer = PlayerNetworkController.localPlayer;
         if (localPlayer == null) return;
-        input.Set(localPlayer.getCurrentInput());
+        input.Set(localPlayer.GetNewNetworkInput());
     }
 
     public void OnConnectedToServer(NetworkRunner runner)

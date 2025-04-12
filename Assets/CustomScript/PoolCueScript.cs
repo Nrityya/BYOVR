@@ -42,7 +42,7 @@ public class PoolCueScript : MonoBehaviour, IInteractable
         capsuleCollider.height = 0.15f;
         capsuleCollider.center = new Vector3(0.677f, 0, 0);
         gameObject.layer = LayerMask.NameToLayer("Pool Cue");
-        
+
     }
 
     void DefaultCollider()
@@ -55,16 +55,20 @@ public class PoolCueScript : MonoBehaviour, IInteractable
 
     void Update()
     {
-        if(heldPlayerCamera){
-            if(Input.GetKeyDown(KeyCode.R)){
+        if (heldPlayerCamera)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
                 DefaultCollider();
                 heldPlayerCamera.GetComponent<PlayerControl>().SetPlayerState(PlayerControl.PlayerState.Idle);
                 transform.parent = null;
                 rigidbodyComponent.useGravity = true;
                 rigidbodyComponent.isKinematic = false;
                 heldPlayerCamera = null;
-            } else
-            if(HitSelected){
+            }
+            else
+            if (HitSelected)
+            {
                 float horComp = Input.GetAxis("Horizontal");
                 float vertComp = Input.GetAxis("Vertical");
 
@@ -77,18 +81,22 @@ public class PoolCueScript : MonoBehaviour, IInteractable
                 Vector3 forwardVect = cameraLook;
                 Vector3 rightVect = Vector3.Cross(forwardVect, Vector3.up).normalized * -1;
 
-                aimVect += rightVect * horComp + forwardVect * vertComp; 
-                if (aimVect.magnitude < 0.1f){
-                    aimVect = cameraLook*-1f;
+                aimVect += rightVect * horComp + forwardVect * vertComp;
+                if (aimVect.magnitude < 0.1f)
+                {
+                    aimVect = cameraLook * -1f;
                 }
-                transform.position = HitSelected.transform.position + 1.5f*aimVect.normalized;
-                transform.rotation = Quaternion.LookRotation(HitSelected.transform.position-transform.position, Vector3.up)* Quaternion.Euler(0, -90, 0);
-                if(Input.GetButtonDown("Submit")){
+                transform.position = HitSelected.transform.position + 1.5f * aimVect.normalized;
+                transform.rotation = Quaternion.LookRotation(HitSelected.transform.position - transform.position, Vector3.up) * Quaternion.Euler(0, -90, 0);
+                if (Input.GetButtonDown("Submit"))
+                {
                     HitReleased(aimVect);
-                    
+
                 }
                 Debug.Log("Aim Vector: " + aimVect);
-            } else {
+            }
+            else
+            {
                 transform.position = heldPlayerCamera.transform.position + heldPlayerCamera.transform.forward * 0.5f + heldPlayerCamera.transform.right * 0.5f;
                 transform.rotation = heldPlayerCamera.transform.rotation * Quaternion.Euler(0, 90, 90);
             }
