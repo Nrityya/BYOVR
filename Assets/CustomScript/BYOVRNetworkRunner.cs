@@ -33,7 +33,7 @@ public class BYOVRNetworkRunner : MonoBehaviour, INetworkRunnerCallbacks
 
         await runner.StartGame(new StartGameArgs()
         {
-            GameMode = GameMode.AutoHostOrClient,
+            GameMode = GameMode.Shared,
             SessionName = "TestRoom2",
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
@@ -42,12 +42,9 @@ public class BYOVRNetworkRunner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (runner.IsServer)
+        if (player == runner.LocalPlayer)
         {
-            // Create a unique position for the player
-            Vector3 spawnPosition = transform.position + new Vector3(0, 0, player.RawEncoded % runner.Config.Simulation.PlayerCount * 3);
-            NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
-            // Keep track of the player avatars for easy access
+            NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, transform.position, Quaternion.identity, player);
             spawnedCharacters.Add(player, networkPlayerObject);
         }
     }
@@ -63,9 +60,6 @@ public class BYOVRNetworkRunner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        var localPlayer = PlayerNetworkController.localPlayer;
-        if (localPlayer == null) return;
-        input.Set(localPlayer.GetNewNetworkInput());
     }
 
     public void OnConnectedToServer(NetworkRunner runner)
