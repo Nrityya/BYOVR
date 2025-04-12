@@ -52,6 +52,14 @@ public class PlayerNetworkController : NetworkBehaviour
         {
             data.controlledObjectId = controlledObject.NetworkId;
             data.controlledObjectState = controlledObject.GetNetworkState();
+            data.controlledObjectState.magic = true;
+        }
+        else
+        {
+            data.controlledObjectState = new ControlledObjectState()
+            {
+                magic = false
+            };
         }
 
         return data;
@@ -63,20 +71,27 @@ public class PlayerNetworkController : NetworkBehaviour
         {
             _cc.Move(data.moveDirection);
 
-            if (data.controlledObjectId.IsValid && (controlledObject == null || !data.controlledObjectId.Equals(controlledObject.NetworkId)))
+            if (data.controlledObjectId.IsValid)
             {
-                if (Runner.TryFindObject(data.controlledObjectId, out NetworkObject obj))
+                if (controlledObject == null || !data.controlledObjectId.Equals(controlledObject.NetworkId))
                 {
-                    var interactable = obj.GetComponent<Interactable>();
-                    interactable.TakeControl(this);
-                }
-                else
-                {
-                    Debug.Log("Controlled network object does not have interactable component");
+                    if (Runner.TryFindObject(data.controlledObjectId, out NetworkObject obj))
+                    {
+                        controlledObject = obj.GetComponent<Interactable>();
+                        controlledObject.TakeControl(this);
+                    }
+                    else
+                    {
+                        Debug.Log("Controlled network object does not have interactable component");
+                    }
                 }
             }
+            else if (controlledObject)
+            {
+                controlledObject.RelieveControl();
+            }
 
-            if (controlledObject)
+            if (controlledObject && data.controlledObjectState.magic)
             {
                 controlledObject.UpdateFromNetworkState(data);
             }

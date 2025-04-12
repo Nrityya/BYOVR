@@ -12,6 +12,7 @@ public struct NetworkInputData : INetworkInput
 
 public struct ControlledObjectState : INetworkStruct
 {
+    public NetworkBool magic;
     public Vector3 targetPosition;
     public float axisX;
     public float axisY;
