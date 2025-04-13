@@ -19,8 +19,8 @@ public class BYOVRNetworkRunner : MonoBehaviour, INetworkRunnerCallbacks
 
     async void StartGame()
     {
-        // Create the Fusion runner and let it know that we will be providing user input
-        runner = gameObject.AddComponent<NetworkRunner>();
+        // Assign the Fusion runner and let it know that we will be providing user input
+        runner = gameObject.GetComponent<NetworkRunner>();
         runner.ProvideInput = true;
 
         // Create the NetworkSceneInfo from the current scene
