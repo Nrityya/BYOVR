@@ -33166,6 +33166,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2502630577177643907, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: hitForceMax
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4260185100813773725, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -47137,6 +47141,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2502630577177643907, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: hitForceMax
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4260185100813773725, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -49372,7 +49380,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604476348942661476}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
