@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Outline))]
 [RequireComponent(typeof(NetworkObject))]
-public class Interactable : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDynamicSelectable
+public class Interactable : NetworkBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDynamicSelectable
 {
     protected bool isHovered = false;
     protected Camera playerCamera;

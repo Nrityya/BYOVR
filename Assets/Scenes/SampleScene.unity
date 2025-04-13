@@ -28896,6 +28896,7 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 1430705216}
   - {fileID: 1430705220}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1430705219
@@ -31895,9 +31896,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 543450652824363217}
     m_Modifications:
+    - target: {fileID: 1591694514052112766, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2317244638726548505, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: m_Name
       value: Pool Cue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317244638726548505, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260185100813773725, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5231390810023686214, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31939,6 +31952,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5559799642157796666, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: Flags
       value: 262145
@@ -31949,10 +31966,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: 'NetworkedBehaviours.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1545601966}
+    - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: 'NetworkedBehaviours.Array.data[1]'
       value: 
       objectReference: {fileID: 1545601972}
     m_RemovedComponents:
@@ -31975,6 +31996,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5231390810023686214, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
   m_PrefabInstance: {fileID: 1545601964}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1545601966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2502630577177643907, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+  m_PrefabInstance: {fileID: 1545601964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802765412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dc6652aefe4314ca8ba162bec17edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1545601972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45724,10 +45756,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
       propertyPath: 'NetworkedBehaviours.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3061284405153082963}
+    - target: {fileID: 8591669962347364491, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+      propertyPath: 'NetworkedBehaviours.Array.data[1]'
       value: 
       objectReference: {fileID: 1903841427}
     m_RemovedComponents:
@@ -45741,6 +45777,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1903841427}
   m_SourcePrefab: {fileID: 100100000, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+--- !u!114 &3061284405153082963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2502630577177643907, guid: a1993bf9dedccfb478b124a6d08a6c12, type: 3}
+  m_PrefabInstance: {fileID: 3061284405153082962}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244944273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dc6652aefe4314ca8ba162bec17edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &3121728756871088149
 MeshFilter:
   m_ObjectHideFlags: 0

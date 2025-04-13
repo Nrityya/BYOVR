@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NetworkRigidbody3D))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class PoolCueInteractable : Interactable
+public class PoolCueInteractable : Interactable, IStateAuthorityChanged
 {
     public float maxChargeTime = 2;
     public float hitForceMin = 1;
@@ -202,5 +202,10 @@ public class PoolCueInteractable : Interactable
     private bool IsHitButtonUp()
     {
         return Input.GetKeyUp(KeyCode.T) || ControllerInputHelper.IsYButtonUp();
+    }
+
+    public void StateAuthorityChanged()
+    {
+        if (IsControlled) rb.excludeLayers = ~0;
     }
 }
