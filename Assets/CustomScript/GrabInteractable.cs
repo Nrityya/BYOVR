@@ -58,11 +58,17 @@ public class GrabInteractable : Interactable
 
         if (IsRotateButtonPressed() && rotatable)
         {
-            var axisX = Input.GetAxis("Mouse X");
-            var axisY = Input.GetAxis("Mouse Y");
+            controllingPlayer.movementEnabled = false;
+
+            var axisX = Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal");
+            var axisY = Input.GetAxis("Mouse Y") + Input.GetAxis("Vertical");
 
             transform.Rotate(playerCamera.transform.forward * -axisX * 5f, Space.World);
             transform.Rotate(playerCamera.transform.right * axisY * 5f, Space.World);
+        }
+        else if (!controllingPlayer.movementEnabled)
+        {
+            controllingPlayer.movementEnabled = true;
         }
 
         var offset = targetPosition - transform.position;

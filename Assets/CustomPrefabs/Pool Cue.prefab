@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dc6652aefe4314ca8ba162bec17edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxChargeTime: 2
+  hitForceMin: 1
+  hitForceMax: 5
 --- !u!1 &4260185100813773725
 GameObject:
   m_ObjectHideFlags: 0

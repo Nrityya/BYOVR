@@ -20,6 +20,8 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public bool IsLocal => Object.HasStateAuthority;
 
+    public bool movementEnabled = true;
+
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
@@ -36,7 +38,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public void Update()
     {
-        if (!IsLocal) return;
+        if (!IsLocal || !movementEnabled) return;
 
         Vector3 moveVec = Vector3.zero;
 

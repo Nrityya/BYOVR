@@ -14,11 +14,12 @@ public class ChargeBar : MonoBehaviour
 
     void Start()
     {
-        chargeBarPrefab = Resources.Load<GameObject>("ChargeBar");
+        LoadPrefab();
     }
 
     public void Setup(Camera camera)
     {
+        LoadPrefab();
         maxChargeReached = false;
         bar = Instantiate(chargeBarPrefab, transform.position, Quaternion.identity, transform);
         bar.transform.localScale = new Vector3(0.004f, 0.004f, 0.004f) / transform.localScale.x;
@@ -29,15 +30,16 @@ public class ChargeBar : MonoBehaviour
         audioSource.volume = 0.7f;
         audioSource.Play();
         bar.GetComponentInChildren<ParticleSystem>().Stop();
-    
+
     }
 
     public void UpdateCharge(float percent)
-    {   
-        
+    {
+
         if (bar == null) throw new Exception("Charge bar must be setup before it can be updated");
 
-        if(!maxChargeReached && percent >= 0.95f){
+        if (!maxChargeReached && percent >= 0.95f)
+        {
             audioSource.Stop();
             audioSource.clip = Resources.Load<AudioClip>("Audio/max charge");
             audioSource.pitch = 2;
@@ -69,5 +71,10 @@ public class ChargeBar : MonoBehaviour
         }
         chargeBarComponent = null;
         playerCamera = null;
+    }
+
+    private void LoadPrefab()
+    {
+        chargeBarPrefab ??= Resources.Load<GameObject>("ChargeBar");
     }
 }
