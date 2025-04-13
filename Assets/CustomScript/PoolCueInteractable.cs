@@ -18,11 +18,11 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
     Joint joint;
     CapsuleCollider capsuleCollider;
 
-    Rigidbody targetBody = null;
+    PoolTarget targetBody = null;
 
     int pickUpFrameNumber = 0;
 
-    readonly List<PoolHoverTarget> tempOutlines = new();
+    readonly List<PoolTarget> cachedTargets = new();
 
     public void Start()
     {
@@ -54,21 +54,23 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
             var cameraTransform = controllingPlayer.cameraObj.transform;
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit) && hit.rigidbody != null)
             {
-                if (IsSelectButtonDown())
+                if (hit.rigidbody.TryGetComponent(out PoolTarget comp))
                 {
-                    TargetObject(hit.rigidbody);
-                }
-                else if (!hit.rigidbody.TryGetComponent(out PoolHoverTarget comp))
-                {
-                    comp = hit.rigidbody.gameObject.AddComponent<PoolHoverTarget>();
-                    tempOutlines.Add(comp);
-                    comp.SwitchHighlight(true);
+                    if (!cachedTargets.Contains(comp))
+                    {
+                        cachedTargets.Add(comp);
+                        comp.HighlightingEnabled = true;
+                        comp.SwitchHighlight(true);
+                    }
+                    if (IsSelectButtonDown())
+                    {
+                        TargetObject(comp);
+                    }
                 }
             }
         }
         else
         {
-            if (!targetBody.isKinematic) targetBody.isKinematic = true; // For Photon
             if (IsHitButtonDown())
             {
                 StartCoroutine(HitCoroutine());
@@ -117,17 +119,17 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
         Destroy(joint);
         joint = null;
         controllingPlayer.movementEnabled = true;
-        foreach (var comp in tempOutlines)
+        foreach (var comp in cachedTargets)
         {
-            if (!comp.IsDestroyed()) Destroy(comp);
+            comp.HighlightingEnabled = false;
         }
         RelieveControl();
     }
 
-    private void TargetObject(Rigidbody body)
+    private void TargetObject(PoolTarget body)
     {
         targetBody = body;
-        body.isKinematic = true;
+        targetBody.RpcGetTargeted();
 
         transform.position = body.transform.position - new Vector3(capsuleCollider.height, 0, 0);
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -137,24 +139,14 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
         joint = hinge;
         hinge.anchor = new Vector3(1, 0, 0);
         hinge.axis = Vector3.up;
-        hinge.connectedBody = body;
+        hinge.connectedBody = body.GetRigidbody();
 
         controllingPlayer.movementEnabled = false;
-
-        if (targetBody.TryGetComponent(out NetworkObject obj))
-        {
-            obj.RequestStateAuthority();
-        }
     }
 
     private IEnumerator HitCoroutine()
     {
-        bool addedTemporaryBar = false;
-        if (!targetBody.gameObject.TryGetComponent(out ChargeBar chargeBar))
-        {
-            chargeBar = targetBody.gameObject.AddComponent<ChargeBar>();
-            addedTemporaryBar = true;
-        }
+        var chargeBar = targetBody.gameObject.GetComponent<ChargeBar>();
         chargeBar.Setup(playerCamera);
 
         float start = Time.realtimeSinceStartup;
@@ -166,16 +158,9 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
             yield return null;
         }
         float hitForce = Mathf.Min(chargeTime * (hitForceMax - hitForceMin) / maxChargeTime + hitForceMin, hitForceMax);
-
-        targetBody.isKinematic = false;
-        targetBody.AddForce(transform.right * hitForce, ForceMode.Impulse);
+        targetBody.RpcHit(transform.right * hitForce);
 
         chargeBar.Cleanup();
-        if (addedTemporaryBar)
-        {
-            Destroy(chargeBar);
-        }
-
         PickUp();
     }
 
@@ -206,6 +191,6 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
 
     public void StateAuthorityChanged()
     {
-        if (IsControlled) rb.excludeLayers = ~0;
+        rb.excludeLayers = ~0;
     }
 }
