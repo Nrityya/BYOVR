@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &465951041073766388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1182316529299403432}
+  - component: {fileID: 1198469979201953259}
+  m_Layer: 0
+  m_Name: RigidbodyTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1182316529299403432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465951041073766388}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3208900936286775229}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1198469979201953259
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465951041073766388}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3208900934953927820
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +125,7 @@ GameObject:
   - component: {fileID: 3208900935372597644}
   - component: {fileID: 3208900935372597647}
   - component: {fileID: 3208900935372597651}
+  - component: {fileID: 6106192751634766970}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -190,6 +250,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &6106192751634766970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208900935372597642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be67559e96d70ab4ea1a228d998726b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerState: 0
 --- !u!1 &3208900935542537839
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
+  playerController: {fileID: 2250775738595406293}
   settings: {fileID: 11400000, guid: cb8439dae3cf5c0449482769d029f696, type: 2}
   onStartHover:
     m_PersistentCalls:
@@ -691,6 +765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1182316529299403432}
   - {fileID: 3208900936321159910}
   m_Father: {fileID: 3208900935372597648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -986,7 +1061,7 @@ GameObject:
   - component: {fileID: 2373020070888841992}
   - component: {fileID: 2250775738595406293}
   - component: {fileID: 7178945729632954757}
-  - component: {fileID: 2116424386872613285}
+  - component: {fileID: 1747110735190769892}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1048,9 +1123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307be1ab7085e374ba6af138ac6ae993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
   cameraObj: {fileID: 3208900935372597649}
   serverGroup: {fileID: 7964410086437594417}
   clientGroup: {fileID: 8034732427732307689}
+  itemRigidbodyTarget: {fileID: 1198469979201953259}
 --- !u!114 &7178945729632954757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,9 +1146,9 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2250775738595406293}
-  - {fileID: 2116424386872613285}
+  - {fileID: 1747110735190769892}
   ForceRemoteRenderTimeframe: 0
---- !u!114 &2116424386872613285
+--- !u!114 &1747110735190769892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1080,13 +1157,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7892113796569047370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -9.8
-  jumpImpulse: 8
-  maxSpeed: 8
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 1
 --- !u!1 &7964410086437594417
 GameObject:
   m_ObjectHideFlags: 0

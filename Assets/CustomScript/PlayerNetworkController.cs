@@ -1,10 +1,11 @@
 using Fusion;
 using UnityEngine;
 
-[RequireComponent(typeof(NetworkCharacterController))]
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(NetworkTransform))]
 public class PlayerNetworkController : NetworkBehaviour
 {
-    public static PlayerNetworkController localPlayer;
+    public float moveSpeed = 5;
 
     public Camera cameraObj;
 
@@ -12,22 +13,33 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public GameObject clientGroup;
 
-    private NetworkCharacterController _cc;
+    public Rigidbody itemRigidbodyTarget;
+
+    private CharacterController cc;
+    private Interactable controlledObject;
+
+    public bool IsLocal => Object.HasStateAuthority;
+
+    public bool movementEnabled = true;
 
     private void Awake()
     {
-        _cc = GetComponent<NetworkCharacterController>();
+        cc = GetComponent<CharacterController>();
+
+        var netTransform = GetComponent<NetworkTransform>();
+        netTransform.DisableSharedModeInterpolation = true;
     }
 
     private void Start()
     {
-        serverGroup.SetActive(!Object.HasInputAuthority);
-        clientGroup.SetActive(Object.HasInputAuthority);
-        if (Object.HasInputAuthority) localPlayer = this;
+        serverGroup.SetActive(!IsLocal);
+        clientGroup.SetActive(IsLocal);
     }
 
-    public NetworkInputData getCurrentInput()
+    public void Update()
     {
+        if (!IsLocal || !movementEnabled) return;
+
         Vector3 moveVec = Vector3.zero;
 
         Vector3 cameraLook = cameraObj.transform.forward;
@@ -40,17 +52,42 @@ public class PlayerNetworkController : NetworkBehaviour
         moveVec += rightVec * Input.GetAxis("Horizontal");
         moveVec += forwardVec * Input.GetAxis("Vertical");
 
-        return new NetworkInputData()
-        {
-            direction = moveVec
-        };
+        moveVec *= moveSpeed;
+
+        cc.SimpleMove(moveVec);
     }
 
-    public override void FixedUpdateNetwork()
+    public void OnObjectSelection(GameObject obj)
     {
-        if (GetInput(out NetworkInputData data))
-        {
-            _cc.Move(data.direction);
-        }
+        if (controlledObject) return;
+
+        Interactable interactable = obj.GetComponent<Interactable>();
+        if (interactable == null || interactable.IsControlled) return;
+
+        interactable.TakeControl(this);
+    }
+
+    public void OnObjectStartHover(GameObject obj)
+    {
+    }
+
+    public void OnObjectEndHover(GameObject obj)
+    {
+    }
+
+    public void OnObjectTakeControl(Interactable obj)
+    {
+        if (controlledObject && controlledObject != obj) controlledObject.RelieveControl();
+        controlledObject = obj;
+    }
+
+    public void OnObjectRelieveControl(Interactable obj)
+    {
+        controlledObject = null;
+    }
+
+    public void OnDestroy()
+    {
+        if (controlledObject) controlledObject.RelieveControl();
     }
 }
