@@ -55,6 +55,16 @@ public class PlayerNetworkController : NetworkBehaviour
         moveVec *= moveSpeed;
 
         cc.SimpleMove(moveVec);
+
+        if (ControllerInputHelper.IsBDown() || Input.GetKeyDown(KeyCode.Q))
+        {
+            if (Physics.Raycast(cameraObj.transform.position, cameraObj.transform.forward, out RaycastHit hit))
+            {
+                cc.enabled = false;
+                transform.position = hit.point + Vector3.up * cc.height * 0.5f;
+                cc.enabled = true;
+            }
+        }
     }
 
     public void OnObjectSelection(GameObject obj)

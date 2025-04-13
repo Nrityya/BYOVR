@@ -12,7 +12,7 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
 {
     public float maxChargeTime = 2;
     public float hitForceMin = 1;
-    public float hitForceMax = 5;
+    public float hitForceMax = 15;
 
     Rigidbody rb;
     Joint joint;

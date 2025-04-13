@@ -80,7 +80,8 @@ public class XRCardboardInputModule : PointerInputModule
         }
 
         var dynamicallySelected = IsDynamicallySelected(currentTarget, pointerEventData);
-        var traditionallySelected = (Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || Input.GetButtonDown(settings.ClickInput);
+        var selectButtonDown = Input.GetKeyDown(KeyCode.E) || ControllerInputHelper.IsXButtonDown();
+        var traditionallySelected = (Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || selectButtonDown;
         if ((dynamicallySelected == null && traditionallySelected) || dynamicallySelected == true)
         {
             ExecuteEvents.ExecuteHierarchy(currentTarget, pointerEventData, ExecuteEvents.pointerClickHandler);
