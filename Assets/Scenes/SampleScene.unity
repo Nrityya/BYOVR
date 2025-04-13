@@ -11483,6 +11483,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 504348667}
+  - {fileID: 504348673}
   ForceRemoteRenderTimeframe: 0
 --- !u!65 &504348669
 BoxCollider:
@@ -11505,6 +11506,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8400002, y: 2.3700001, z: 0.29000017}
   m_Center: {x: 0.000000014901165, y: 1.1850001, z: -0.04500025}
+--- !u!114 &504348673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504348663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1001 &504874039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30591,6 +30609,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 23016572171086977, guid: 1594b6dd197757d438b22b03efd47041, type: 3}
       insertIndex: -1
       addedObject: {fileID: 504348669}
+    - targetCorrespondingSourceObject: {fileID: 23016572171086977, guid: 1594b6dd197757d438b22b03efd47041, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 504348673}
   m_SourcePrefab: {fileID: 100100000, guid: 1594b6dd197757d438b22b03efd47041, type: 3}
 --- !u!4 &1440368873 stripped
 Transform:
