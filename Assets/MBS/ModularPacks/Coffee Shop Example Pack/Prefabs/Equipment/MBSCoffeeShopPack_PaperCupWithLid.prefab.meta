@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 9f311a9d05bee1f438915646bdaebb9a
-labels:
-- FusionPrefab
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 208505
@@ -9,8 +12,3 @@ AssetOrigin:
   packageVersion: 0.2f
   assetPath: Assets/MBS/ModularPacks/Coffee Shop Example Pack/Prefabs/Equipment/MBSCoffeeShopPack_PaperCupWithLid.prefab
   uploadId: 609877
-PrefabImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 

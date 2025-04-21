@@ -11,8 +11,6 @@ using UnityEngine.XR;
 
 public class XRCardboardInputModule : PointerInputModule
 {
-    public PlayerNetworkController playerController;
-
     [SerializeField]
     XRCardboardInputSettings settings = default;
     [SerializeField]
@@ -62,63 +60,36 @@ public class XRCardboardInputModule : PointerInputModule
         }
         catch (NullReferenceException)
         {
-            StopHovering(currentTarget);
             currentTarget = null;
+            StopHovering();
             return;
         }
 
         if (currentTarget != handler)
         {
-            if (hovering)
-                StopHovering(currentTarget);
             var gazeTime = settings.GazeTime;
             currentTarget = handler;
             currentTargetClickTime = Time.realtimeSinceStartup + gazeTime;
+            if (hovering)
+                StopHovering();
             hovering = true;
             onStartHover?.Invoke(gazeTime);
-            if (playerController) playerController.OnObjectStartHover(currentTarget);
         }
 
-        var dynamicallySelected = IsDynamicallySelected(currentTarget, pointerEventData);
-        var selectButtonDown = Input.GetKeyDown(KeyCode.E) || ControllerInputHelper.IsXButtonDown();
-        var traditionallySelected = (Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || selectButtonDown;
-        if ((dynamicallySelected == null && traditionallySelected) || dynamicallySelected == true)
+        if ((Time.realtimeSinceStartup > currentTargetClickTime && settings.ClickOnHover) || Input.GetButtonDown(settings.ClickInput))
         {
             ExecuteEvents.ExecuteHierarchy(currentTarget, pointerEventData, ExecuteEvents.pointerClickHandler);
             currentTargetClickTime = float.MaxValue;
             onClick?.Invoke();
-            StopHovering(currentTarget);
-            if (playerController) playerController.OnObjectSelection(currentTarget);
+            StopHovering();
         }
     }
 
-    void StopHovering(GameObject target)
+    void StopHovering()
     {
         if (!hovering)
             return;
-        if (playerController) playerController.OnObjectEndHover(target);
         hovering = false;
         onEndHover?.Invoke();
     }
-
-    bool? IsDynamicallySelected(GameObject selectedObj, PointerEventData pointerEventData)
-    {
-        if (selectedObj == null) return null;
-        IDynamicSelectable selectable;
-        try
-        {
-            selectable = selectedObj.GetComponent<IDynamicSelectable>();
-        }
-        catch (NullReferenceException)
-        {
-            return null;
-        }
-        if (selectable == null) return null;
-        return selectable.ShouldBeSelected(pointerEventData);
-    }
-}
-
-public interface IDynamicSelectable
-{
-    bool ShouldBeSelected(PointerEventData pointerEventData);
 }
