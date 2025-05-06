@@ -1,16 +1,56 @@
-using UnityEngine;
-
-public class HelpMenuControler : MonoBehaviour
+﻿using UnityEngine;
+using Fusion;
+public class HelpMenuControler : NetworkBehaviour
 {
-    public GameObject canves;
-    public void close_menu()
+    public GameObject canvas;
+    private bool isMenuOpen = false;
+
+    //public void close_menu()
+    //{
+    //    Debug.Log("Close Menu");
+    //    canvas.SetActive(false);
+    //    isMenuOpen = false;
+    //}
+    //public void open_menu()
+    //{
+    //    Debug.Log("Open Menu");
+    //    canvas.SetActive(true);
+    //    isMenuOpen = true;
+    //}
+    void OpenMenuLocal()
     {
-        Debug.Log("Close Menu");
-        canves.SetActive(false);
+        canvas.SetActive(true);
+        isMenuOpen = true;
+        Debug.Log("Menu opened locally");
     }
+
+    void CloseMenuLocal()
+    {
+        canvas.SetActive(false);
+        isMenuOpen = false;
+        Debug.Log("Menu closed locally");
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    void RpcOpenMenu()
+    {
+        OpenMenuLocal();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    void RpcCloseMenu()
+    {
+        CloseMenuLocal();
+    }
+    // Call this from the EventTrigger → pointer click
     public void open_menu()
     {
-        Debug.Log("Open Menu");
-        canves.SetActive(true);
+        RpcOpenMenu();
+    }
+
+    // Call this from the button inside the menu → button onClick
+    public void close_menu()
+    {
+        RpcCloseMenu();
     }
 }
