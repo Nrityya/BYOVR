@@ -2429,7 +2429,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716285616}
         m_TargetAssemblyTypeName: Teleporting, Assembly-CSharp
-        m_MethodName: teleport_to_beerpong
+        m_MethodName: teleport_to_beer_pong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17303,7 +17303,6 @@ MonoBehaviour:
   beerpong_teleport: {fileID: 951461913}
   karaoke_teleport: {fileID: 669284012}
   uno_teleport: {fileID: 155032955}
-  camera_gameobject: {fileID: 0}
 --- !u!114 &716285617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45488,7 +45487,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716285616}
         m_TargetAssemblyTypeName: Teleporting, Assembly-CSharp
-        m_MethodName: teleport_to_billiaer
+        m_MethodName: teleport_to_billiards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
