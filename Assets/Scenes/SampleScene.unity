@@ -7466,7 +7466,7 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   SyncScale: 0
   SyncParent: 1
-  _interpolationTarget: {fileID: 868785920}
+  _interpolationTarget: {fileID: 0}
   UsePreciseRotation: 0
   UseRenderSleepThresholds: 1
   RenderThresholds:
@@ -7603,8 +7603,7 @@ Transform:
   m_LocalPosition: {x: -4.078, y: 1.192, z: 3.102}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 868785920}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &318041301
@@ -13937,7 +13936,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 546543045}
-  - component: {fileID: 546543046}
   m_Layer: 0
   m_Name: Billiard Table
   m_TagString: Untagged
@@ -13959,7 +13957,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 28274038954822688}
-  - {fileID: 4607264798369344099}
   - {fileID: 2997447730535888229}
   - {fileID: 2465546805458920915}
   - {fileID: 3924164747178880436}
@@ -13967,27 +13964,6 @@ Transform:
   - {fileID: 2716990037912375068}
   m_Father: {fileID: 543450652824363217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &546543046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546543044}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.4, y: 0.82, z: 1.35}
-  m_Center: {x: 0, y: -0.41, z: 0}
 --- !u!1001 &555571999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20004,92 +19980,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2220176665845683114, guid: 9de2496e7a5f5ae41b543330ea8dab15, type: 3}
   m_PrefabInstance: {fileID: 865470304}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &868785919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 868785920}
-  - component: {fileID: 868785922}
-  - component: {fileID: 868785921}
-  m_Layer: 0
-  m_Name: CubeModel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &868785920
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868785919}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.18, y: 0, z: -1.29}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 316678751}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &868785921
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868785919}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 201145fdda99b4d4a97054c9a5053bc3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &868785922
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868785919}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &871492227
 GameObject:
   m_ObjectHideFlags: 0
@@ -51812,14 +51702,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450652824363217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &512477436320875320
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073582926818796342}
-  m_Mesh: {fileID: -5384930814966880639, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
 --- !u!4 &543450652824363217
 Transform:
   m_ObjectHideFlags: 0
@@ -52001,51 +51883,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4627408916350652307}
   m_Mesh: {fileID: -2474249850548103471, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
---- !u!23 &1127713094219189427
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073582926818796342}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -905690159841262435, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1137547537635263689
 GameObject:
   m_ObjectHideFlags: 0
@@ -52180,8 +52017,8 @@ GameObject:
   - component: {fileID: 8358768305582429299}
   - component: {fileID: 7730854034351427261}
   - component: {fileID: 830186269288458158}
-  - component: {fileID: 8358768305582429301}
   - component: {fileID: 8358768305582429300}
+  - component: {fileID: 8358768305582429301}
   - component: {fileID: 8358768305582429302}
   - component: {fileID: 8358768305582429303}
   - component: {fileID: 8358768305582429306}
@@ -52224,6 +52061,7 @@ GameObject:
   - component: {fileID: 136340274039344634}
   - component: {fileID: 3557284056043137964}
   - component: {fileID: 4527398126892771203}
+  - component: {fileID: 4527398126892771204}
   m_Layer: 0
   m_Name: Billiard Table_Walls
   m_TagString: Untagged
@@ -52259,24 +52097,6 @@ GameObject:
   - component: {fileID: 6283954153092848078}
   m_Layer: 0
   m_Name: 9 Ball
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &2073582926818796342
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4607264798369344099}
-  - component: {fileID: 512477436320875320}
-  - component: {fileID: 1127713094219189427}
-  m_Layer: 0
-  m_Name: Billiard Table_Golds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52740,7 +52560,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825032414599070475}
-  m_Mesh: {fileID: 2450497134569459693, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 1fc49604945cb8a40991cdca58669d9c, type: 2}
 --- !u!23 &3571435806996088885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52959,8 +52779,8 @@ Rigidbody:
   m_GameObject: {fileID: 3365571712720773026}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -53197,6 +53017,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4527398126892771204
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825032414599070475}
+  m_Material: {fileID: 13400000, guid: ef374ab56d4ae5245a668543ad370e21, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 1fc49604945cb8a40991cdca58669d9c, type: 2}
 --- !u!4 &4537574368224387558
 Transform:
   m_ObjectHideFlags: 0
@@ -53267,21 +53109,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4607264798369344099
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073582926818796342}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3409929, y: 1.3409929, z: 1.3409929}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 546543045}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4627408916350652307
 GameObject:
   m_ObjectHideFlags: 0
@@ -53293,6 +53120,7 @@ GameObject:
   - component: {fileID: 28274038954822688}
   - component: {fileID: 1078632127391082432}
   - component: {fileID: 4734992954508584976}
+  - component: {fileID: 4734992954508584978}
   m_Layer: 0
   m_Name: Billiard Table_Fabric
   m_TagString: Untagged
@@ -53345,6 +53173,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4734992954508584978
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627408916350652307}
+  m_Material: {fileID: 13400000, guid: 96cdc9762289ce545b72b53e288e3228, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2474249850548103471, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
 --- !u!1 &4818496243158016937
 GameObject:
   m_ObjectHideFlags: 0
@@ -53671,8 +53521,8 @@ Rigidbody:
   m_GameObject: {fileID: 2005442180648358175}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -53829,8 +53679,8 @@ Rigidbody:
   m_GameObject: {fileID: 6384892007401581305}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -53958,6 +53808,7 @@ GameObject:
   - component: {fileID: 3924164747178880436}
   - component: {fileID: 3842428738879838644}
   - component: {fileID: 2315123887405859407}
+  - component: {fileID: 6965222881295339906}
   m_Layer: 0
   m_Name: Billiard Table_Pocket Gold
   m_TagString: Untagged
@@ -53965,6 +53816,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &6965222881295339906
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965222881295339905}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1842831221277952879, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
 --- !u!33 &7158492353169706643
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -54043,8 +53916,8 @@ Rigidbody:
   m_GameObject: {fileID: 7356094290872755610}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -54217,8 +54090,8 @@ Rigidbody:
   m_GameObject: {fileID: 7782411750186419962}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -54410,8 +54283,8 @@ Rigidbody:
   m_GameObject: {fileID: 4818496243158016937}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -54524,6 +54397,7 @@ GameObject:
   - component: {fileID: 2997447730535888229}
   - component: {fileID: 7158492353169706643}
   - component: {fileID: 5873208979653376771}
+  - component: {fileID: 8048023435513990467}
   m_Layer: 0
   m_Name: Billiard Table_Legs
   m_TagString: Untagged
@@ -54531,6 +54405,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8048023435513990467
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048023435513990466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3175833052209260358, guid: d8b6b97c7f824f446b8cc541f8ee62f3, type: 3}
 --- !u!33 &8080851918993669140
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -54629,8 +54525,8 @@ Rigidbody:
   m_GameObject: {fileID: 1137547537635263689}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -54741,7 +54637,7 @@ Transform:
   m_GameObject: {fileID: 1604476348942661476}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.762, y: 0.31399998, z: 0}
+  m_LocalPosition: {x: 0.762, y: 0.338, z: 0}
   m_LocalScale: {x: 0.99943995, y: 0.99943995, z: 0.99943995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54755,9 +54651,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604476348942661476}
   serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Mass: 1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -54918,8 +54814,8 @@ Rigidbody:
   m_GameObject: {fileID: 5415407739608620214}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -55111,8 +55007,8 @@ Rigidbody:
   m_GameObject: {fileID: 2269163863771123107}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -55259,8 +55155,8 @@ Rigidbody:
   m_GameObject: {fileID: 2190719673575352737}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -55400,8 +55296,8 @@ Rigidbody:
   m_GameObject: {fileID: 5486968688849164929}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -55566,8 +55462,8 @@ Rigidbody:
   m_GameObject: {fileID: 4557464860723693848}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -55744,8 +55640,8 @@ Rigidbody:
   m_GameObject: {fileID: 2423935031893261218}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -55922,8 +55818,8 @@ Rigidbody:
   m_GameObject: {fileID: 8609432457179129651}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -56080,8 +55976,8 @@ Rigidbody:
   m_GameObject: {fileID: 9012889626129779769}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.1
+  m_Drag: 0.15
+  m_AngularDrag: 0.19
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

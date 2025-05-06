@@ -17,6 +17,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private CharacterController cc;
     private Interactable controlledObject;
+    public GameObject avatar;
 
     public bool IsLocal => Object.HasStateAuthority;
 
@@ -36,6 +37,13 @@ public class PlayerNetworkController : NetworkBehaviour
         clientGroup.SetActive(IsLocal);
     }
 
+    public void FixedUpdate()
+    {
+        Vector3 cameraLook = cameraObj.transform.forward;
+        cameraLook.y = 0f;
+        cameraLook = cameraLook.normalized;
+        transform.forward = cameraLook;
+    }
     public void Update()
     {
         if (!IsLocal || !movementEnabled) return;
@@ -55,6 +63,8 @@ public class PlayerNetworkController : NetworkBehaviour
         moveVec *= moveSpeed;
 
         cc.SimpleMove(moveVec);
+        
+
 
         if (ControllerInputHelper.IsBDown() || Input.GetKeyDown(KeyCode.Q))
         {
