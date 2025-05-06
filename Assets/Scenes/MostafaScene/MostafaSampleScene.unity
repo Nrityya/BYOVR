@@ -11693,7 +11693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &507970061
 Transform:
   m_ObjectHideFlags: 0
@@ -15626,8 +15626,10 @@ MonoBehaviour:
   SortKey: 3827326212
   ObjectInterest: 1
   Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours: []
+  NestedObjects:
+  - {fileID: 858484658}
+  NetworkedBehaviours:
+  - {fileID: 716285616}
   ForceRemoteRenderTimeframe: 0
 --- !u!1001 &697331911
 PrefabInstance:
@@ -18538,6 +18540,7 @@ GameObject:
   - component: {fileID: 858484655}
   - component: {fileID: 858484654}
   - component: {fileID: 858484657}
+  - component: {fileID: 858484658}
   m_Layer: 0
   m_Name: drink
   m_TagString: Untagged
@@ -18649,6 +18652,25 @@ MonoBehaviour:
   beer: {fileID: 1055276277}
   coffee: {fileID: 2002443777}
   tee: {fileID: 1007463262}
+--- !u!114 &858484658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858484652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 595136569
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 858484657}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &862083757
 GameObject:
   m_ObjectHideFlags: 0
@@ -31660,6 +31682,7 @@ GameObject:
   - component: {fileID: 1422951724}
   - component: {fileID: 1422951723}
   - component: {fileID: 1422951726}
+  - component: {fileID: 1422951727}
   m_Layer: 0
   m_Name: menu
   m_TagString: Untagged
@@ -31770,6 +31793,25 @@ MonoBehaviour:
   volume_text: {fileID: 272028785}
   pause_text: {fileID: 208811505}
   videoPlayer: {fileID: 1526110337}
+--- !u!114 &1422951727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422951721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3246813902
+  ObjectInterest: 1
+  Flags: 1
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1422951726}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1001 &1425311670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46473,10 +46515,10 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects:
+  - {fileID: 1422951727}
   - {fileID: 270670873}
   - {fileID: 1767112955}
-  NetworkedBehaviours:
-  - {fileID: 1422951726}
+  NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
 --- !u!1001 &1961434020
 PrefabInstance:
