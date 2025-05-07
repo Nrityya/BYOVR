@@ -32,17 +32,18 @@ public class PlayerNetworkController : NetworkBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
         var netTransform = GetComponent<NetworkTransform>();
         netTransform.DisableSharedModeInterpolation = true;
+        
     }
 
     private void Start()
     {
         serverGroup.SetActive(!IsLocal);
         clientGroup.SetActive(IsLocal);
-
         if (IsLocal)
         {
             localPlayer = this;
         }
+        avatarTransform.GetComponentInChildren<SkinnedMeshRenderer>().material.color = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
     }
 
     public void FixedUpdate()

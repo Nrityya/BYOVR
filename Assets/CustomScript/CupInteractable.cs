@@ -11,9 +11,11 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
     Vector3 originalPosition;
     Vector3 flippedPosition;
     public bool isHovered = false; 
+    SphereCollider checkerCollider;
 
     void Start()
     {
+        checkerCollider = GetComponentInChildren<SphereCollider>();
         networkTransform = GetComponent<NetworkTransform>();
         outlineComponent = gameObject.GetComponent<Outline>();
         outlineComponent.enabled = false;
@@ -34,12 +36,15 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
         if (!flipped)
         {
             networkTransform.Teleport(flippedPosition, Quaternion.Euler(0, 0, 180f));
+            
         }
         else
         {
             networkTransform.Teleport(originalPosition, Quaternion.Euler(0, 0, 0));
         }
+        checkerCollider.enabled = flipped;
         flipped = !flipped;
+        
     }
 
     public void OnPointerClick(PointerEventData eventData)
