@@ -11360,11 +11360,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 3633075611
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 504348667}
-  - {fileID: 504348673}
+  - {fileID: 504348677}
   ForceRemoteRenderTimeframe: 0
 --- !u!65 &504348669
 BoxCollider:
@@ -11387,7 +11387,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8400002, y: 2.3700001, z: 0.29000017}
   m_Center: {x: 0.000000014901165, y: 1.1850001, z: -0.04500025}
---- !u!114 &504348673
+--- !u!114 &504348677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31703,7 +31703,7 @@ PrefabInstance:
       addedObject: {fileID: 504348669}
     - targetCorrespondingSourceObject: {fileID: 23016572171086977, guid: 1594b6dd197757d438b22b03efd47041, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 504348673}
+      addedObject: {fileID: 504348677}
   m_SourcePrefab: {fileID: 100100000, guid: 1594b6dd197757d438b22b03efd47041, type: 3}
 --- !u!4 &1440368873 stripped
 Transform:
