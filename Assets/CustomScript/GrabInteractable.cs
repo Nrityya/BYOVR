@@ -23,6 +23,8 @@ public class GrabInteractable : Interactable
     int grabbedFrameNumber = 0;
     int droppedFrameNumber = 0;
 
+    protected override string TooltipText { get => "X - Drop\nY - Throw\nOK - Rotate"; }
+
     public void Start()
     {
         SetupInteractable();
@@ -60,13 +62,13 @@ public class GrabInteractable : Interactable
         {
             controllingPlayer.movementEnabled = false;
 
-            var axisX = Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal");
-            var axisY = Input.GetAxis("Mouse Y") + Input.GetAxis("Vertical");
+            var axisX = Input.GetAxis("Horizontal");
+            var axisY = Input.GetAxis("Vertical");
 
             transform.Rotate(playerCamera.transform.forward * -axisX * 5f, Space.World);
             transform.Rotate(playerCamera.transform.right * axisY * 5f, Space.World);
         }
-        else if (!controllingPlayer.movementEnabled)
+        else if (controllingPlayer && !controllingPlayer.movementEnabled)
         {
             controllingPlayer.movementEnabled = true;
         }
