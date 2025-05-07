@@ -24,6 +24,7 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
         
         originalPosition = transform.position;
         flippedPosition = originalPosition + new Vector3(0f, 0.09149997f*2f, 0f);
+        RpcReset();
 
     }
 
@@ -48,7 +49,6 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        var networkObject = GetComponent<NetworkObject>();
         outlineComponent.enabled = true;
         isHovered = true;
     }
@@ -58,7 +58,8 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
         outlineComponent.enabled = false;
         isHovered = false;
     }
-    void Reset()
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    void RpcReset()
     {
         if (flipped)
         {

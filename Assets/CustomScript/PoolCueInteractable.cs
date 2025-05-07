@@ -132,7 +132,9 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
         targetBody.RpcGetTargeted();
 
         transform.position = body.transform.position - new Vector3(capsuleCollider.height, 0, 0);
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        // transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.Euler(0, playerCamera.transform.rotation.y,0);
+        
 
         Destroy(joint);
         var hinge = gameObject.AddComponent<HingeJoint>();

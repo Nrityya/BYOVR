@@ -25,10 +25,12 @@ public class BallDetection : MonoBehaviour
             
             SendMessageUpwards("RpcFlipCup", SendMessageOptions.DontRequireReceiver);
         }
-        // else if (other.CompareTag("PoolBall") && type==Type.Pool)
-        // {
-
-        // }
+        else if (other.CompareTag("PoolBall") && type==Type.Pool)
+        {
+            ps.Play();
+            other.SendMessage("RpcPocketed", SendMessageOptions.DontRequireReceiver);
+            
+        }
     }
 
     // Update is called once per frame

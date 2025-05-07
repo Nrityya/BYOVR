@@ -8,6 +8,9 @@ public class Spawner : MonoBehaviour
     public NetworkRunner runner; // Reference to the NetworkRunner
     public NetworkPrefabRef prefabRef; // Reference to the network prefab
     public int limit = 10;
+    public Vector3 position;
+    public Quaternion rotation;
+    public GameObject parent;
     private Queue<NetworkObject> spawned = new Queue<NetworkObject>();
 
     public void Spawn()
@@ -19,12 +22,12 @@ public class Spawner : MonoBehaviour
         }
 
         // Spawn a new networked object
-        NetworkObject spawnedObject = runner.Spawn(prefabRef, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-
-        // Add the new object to the queue
+        NetworkObject spawnedObject = runner.Spawn(prefabRef, transform.position + position, rotation);
+        if(parent) 
+        {
+            spawnedObject.transform.SetParent(parent.transform);
+        }
         spawned.Enqueue(spawnedObject);
-
-        // Check if the queue exceeds the limit
         if (spawned.Count > limit)
         {
             // Remove the oldest object from the queue and despawn it
@@ -32,4 +35,5 @@ public class Spawner : MonoBehaviour
             runner.Despawn(oldestObject);
         }
     }
+
 }

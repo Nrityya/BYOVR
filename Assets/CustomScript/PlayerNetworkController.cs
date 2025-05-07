@@ -26,7 +26,8 @@ public class PlayerNetworkController : NetworkBehaviour
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
-
+        // avatar = transform.Find("Avatar").gameObject;
+        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
         var netTransform = GetComponent<NetworkTransform>();
         netTransform.DisableSharedModeInterpolation = true;
     }
@@ -42,7 +43,7 @@ public class PlayerNetworkController : NetworkBehaviour
         Vector3 cameraLook = cameraObj.transform.forward;
         cameraLook.y = 0f;
         cameraLook = cameraLook.normalized;
-        transform.forward = cameraLook;
+        avatar.transform.forward = cameraLook;
     }
     public void Update()
     {

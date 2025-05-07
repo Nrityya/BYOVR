@@ -24,18 +24,24 @@ class PoolTarget : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     Outline outline;
     Rigidbody rb;
+    public NetworkRigidbody3D networkRigidbody3D; 
     Vector3 startingPos;
-
-    void Start()
-    {
+    Vector3 cueStartingPos;
+    public GameObject ShownBall;
+    public override void Spawned()
+    {  
+        networkRigidbody3D = GetComponent<NetworkRigidbody3D>();
+        ShownBall = GameObject.Find(name+ " (1)");
         outline = GetComponent<Outline>();
         outline.enabled = false;
         outline.OutlineWidth = 10f;
         outline.OutlineColor = Color.yellow;
         outline.OutlineMode = Outline.Mode.OutlineVisible;
         startingPos = transform.position;
-
+        cueStartingPos = transform.position + new Vector3(0, 0.3f, -0.96f);
         rb = GetComponent<Rigidbody>();
+        RpcReset();  
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -71,10 +77,28 @@ class PoolTarget : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler
         rb.AddForce(force, ForceMode.Impulse);
     }
 
-    public void Reset()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RpcReset()
     {
-        transform.position = startingPos;
+        networkRigidbody3D.transform.position = startingPos;
+        rb.isKinematic = false;
+        rb.useGravity = true;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        if(ShownBall) ShownBall.SetActive(false);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RpcPocketed()
+    {
+        if (name.Contains("cueball"))
+        {
+            networkRigidbody3D.transform.position = cueStartingPos;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        } else {
+            if(ShownBall) ShownBall.SetActive(true);
+            Destroy(gameObject);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class ResetButtonEventHandler : MonoBehaviour
 
     public void ResetCall()
     {
-        target.BroadcastMessage("Reset", SendMessageOptions.DontRequireReceiver);
+        target.BroadcastMessage("RpcReset", SendMessageOptions.DontRequireReceiver);
     }
 
 }

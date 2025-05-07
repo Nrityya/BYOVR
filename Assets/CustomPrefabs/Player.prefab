@@ -1129,7 +1129,7 @@ MonoBehaviour:
   serverGroup: {fileID: 7964410086437594417}
   clientGroup: {fileID: 8034732427732307689}
   itemRigidbodyTarget: {fileID: 1198469979201953259}
-  Avatar: {fileID: 8458636084491114797}
+  avatar: {fileID: 8458636084491114797}
   movementEnabled: 1
 --- !u!114 &7178945729632954757
 MonoBehaviour:
