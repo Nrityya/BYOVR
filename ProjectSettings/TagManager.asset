@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MBS:Floor
   - MBS:Wall
+  - BeerPongBall
+  - PoolBall
   layers:
   - Default
   - TransparentFX

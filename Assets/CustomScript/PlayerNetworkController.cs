@@ -28,7 +28,8 @@ public class PlayerNetworkController : NetworkBehaviour
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
-
+        // avatar = transform.Find("Avatar").gameObject;
+        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
         var netTransform = GetComponent<NetworkTransform>();
         netTransform.DisableSharedModeInterpolation = true;
     }
