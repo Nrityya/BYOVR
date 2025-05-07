@@ -1,20 +1,12 @@
 using UnityEngine;
-using System;
 
 public class ResetButtonEventHandler : MonoBehaviour
 {
-    public static event Action resetCups1, resetCups2, resetPool;
+    public GameObject target;
 
-    public static void ResetCups1()
+    public void ResetCall()
     {
-        resetCups1?.Invoke();
+        target.BroadcastMessage("Reset", SendMessageOptions.DontRequireReceiver);
     }
-    public static void ResetCups2()
-    {
-        resetCups2?.Invoke();
-    }
-    public static void ResetPool()
-    {
-        resetPool?.Invoke();
-    }
+
 }

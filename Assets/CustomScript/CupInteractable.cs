@@ -18,7 +18,7 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
 
     void Start()
     {
-        // OnGlobalTrigger += Reset;
+        OnGlobalTrigger += Reset;
         networkTransform = GetComponent<NetworkTransform>();
         outlineComponent = gameObject.GetComponent<Outline>();
         outlineComponent.enabled = false;
@@ -35,27 +35,25 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     void RpcFlipCup()
     {
-        Debug.Log($"RpcRequestFlipCup executed on client: {Runner.LocalPlayer}");
+        // Debug.Log($"RpcRequestFlipCup executed on client: {Runner.LocalPlayer}");
 
-        // Toggle the flip state
         flipped = !flipped;
 
-        // Apply the flip transformation
         if (flipped)
         {
             networkTransform.Teleport(flippedPosition, Quaternion.Euler(0, 0, 180f));
-            Debug.Log("Flipping cup down");
+            // Debug.Log("Flipping cup down");
         }
         else
         {
             networkTransform.Teleport(originalPosition, Quaternion.Euler(0, 0, 0));
-            Debug.Log("Flipping cup up");
+            // Debug.Log("Flipping cup up");
         }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"OnPointerClick called by: {Runner.LocalPlayer}");
+        // Debug.Log($"OnPointerClick called by: {Runner.LocalPlayer}");
         RpcFlipCup();
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -69,6 +67,13 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
     {
         outlineComponent.enabled = false;
         isHovered = false;
+    }
+    void Reset()
+    {
+        if (flipped)
+        {
+            RpcFlipCup();
+        }
     }
 
 }
