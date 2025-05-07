@@ -19,7 +19,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private CharacterController cc;
     private Interactable controlledObject;
-    public GameObject avatar;
+    public GameObject avatarTransform;
 
     public bool IsLocal => Object.HasStateAuthority;
 
@@ -46,11 +46,13 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public void FixedUpdate()
     {
+        if (!IsLocal) return;
         Vector3 cameraLook = cameraObj.transform.forward;
         cameraLook.y = 0f;
         cameraLook = cameraLook.normalized;
-        transform.forward = cameraLook;
+        avatarTransform.transform.forward = cameraLook;
     }
+
     public void Update()
     {
         if (!IsLocal || !movementEnabled) return;
