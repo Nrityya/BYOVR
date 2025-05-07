@@ -6,19 +6,14 @@ using UnityEngine.UIElements;
 public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerEnterHandler,IPointerExitHandler
 {
     bool flipped;
-    int flipFrameNumber = 0;
     NetworkTransform networkTransform;
     Outline outlineComponent;
     Vector3 originalPosition;
-    Quaternion originalRotation;
     Vector3 flippedPosition;
-
-    public static event Action OnGlobalTrigger;
     public bool isHovered = false; 
 
     void Start()
     {
-        OnGlobalTrigger += Reset;
         networkTransform = GetComponent<NetworkTransform>();
         outlineComponent = gameObject.GetComponent<Outline>();
         outlineComponent.enabled = false;
@@ -35,20 +30,15 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     void RpcFlipCup()
     {
-        // Debug.Log($"RpcRequestFlipCup executed on client: {Runner.LocalPlayer}");
-
-        flipped = !flipped;
-
-        if (flipped)
+        if (!flipped)
         {
             networkTransform.Teleport(flippedPosition, Quaternion.Euler(0, 0, 180f));
-            // Debug.Log("Flipping cup down");
         }
         else
         {
             networkTransform.Teleport(originalPosition, Quaternion.Euler(0, 0, 0));
-            // Debug.Log("Flipping cup up");
         }
+        flipped = !flipped;
     }
 
     public void OnPointerClick(PointerEventData eventData)

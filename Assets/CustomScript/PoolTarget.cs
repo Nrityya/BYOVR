@@ -2,6 +2,7 @@ using Fusion;
 using Fusion.Addons.Physics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Outline))]
 [RequireComponent(typeof(NetworkObject))]
@@ -23,6 +24,7 @@ class PoolTarget : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     Outline outline;
     Rigidbody rb;
+    Vector3 startingPos;
 
     void Start()
     {
@@ -31,6 +33,7 @@ class PoolTarget : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler
         outline.OutlineWidth = 10f;
         outline.OutlineColor = Color.yellow;
         outline.OutlineMode = Outline.Mode.OutlineVisible;
+        startingPos = transform.position;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -66,5 +69,12 @@ class PoolTarget : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void Reset()
+    {
+        transform.position = startingPos;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }

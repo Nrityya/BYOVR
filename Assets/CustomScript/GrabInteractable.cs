@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.Net.Mime;
 using Fusion.Addons.Physics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -66,7 +67,7 @@ public class GrabInteractable : Interactable
             transform.Rotate(playerCamera.transform.forward * -axisX * 5f, Space.World);
             transform.Rotate(playerCamera.transform.right * axisY * 5f, Space.World);
         }
-        else if (!controllingPlayer.movementEnabled)
+        else if (controllingPlayer && !controllingPlayer.movementEnabled)
         {
             controllingPlayer.movementEnabled = true;
         }
