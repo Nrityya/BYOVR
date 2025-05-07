@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(NetworkTransform))]
 public class PlayerNetworkController : NetworkBehaviour
 {
+    public static PlayerNetworkController localPlayer;
+
     public float moveSpeed = 5;
 
     public Camera cameraObj;
@@ -17,7 +19,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private CharacterController cc;
     private Interactable controlledObject;
-    public GameObject avatar;
+    public GameObject avatarTransform;
 
     public bool IsLocal => Object.HasStateAuthority;
 
@@ -36,15 +38,22 @@ public class PlayerNetworkController : NetworkBehaviour
     {
         serverGroup.SetActive(!IsLocal);
         clientGroup.SetActive(IsLocal);
+
+        if (IsLocal)
+        {
+            localPlayer = this;
+        }
     }
 
     public void FixedUpdate()
     {
+        if (!IsLocal) return;
         Vector3 cameraLook = cameraObj.transform.forward;
         cameraLook.y = 0f;
         cameraLook = cameraLook.normalized;
-        avatar.transform.forward = cameraLook;
+        avatarTransform.transform.forward = cameraLook;
     }
+
     public void Update()
     {
         if (!IsLocal || !movementEnabled) return;
@@ -64,18 +73,21 @@ public class PlayerNetworkController : NetworkBehaviour
         moveVec *= moveSpeed;
 
         cc.SimpleMove(moveVec);
-        
-
 
         if (ControllerInputHelper.IsBDown() || Input.GetKeyDown(KeyCode.Q))
         {
             if (Physics.Raycast(cameraObj.transform.position, cameraObj.transform.forward, out RaycastHit hit))
             {
-                cc.enabled = false;
-                transform.position = hit.point + Vector3.up * cc.height * 0.5f;
-                cc.enabled = true;
+                Teleport(hit.point + Vector3.up * cc.height * 0.5f);
             }
         }
+    }
+
+    public void Teleport(Vector3 position)
+    {
+        cc.enabled = false;
+        transform.position = position;
+        cc.enabled = true;
     }
 
     public void OnObjectSelection(GameObject obj)

@@ -18,6 +18,8 @@ public class Interactable : NetworkBehaviour, IPointerClickHandler, IPointerEnte
 
     private bool initialized = false;
 
+    protected virtual string TooltipText { get => null; }
+
     protected void SetupInteractable()
     {
         initialized = true;
@@ -39,12 +41,14 @@ public class Interactable : NetworkBehaviour, IPointerClickHandler, IPointerEnte
         playerController.OnObjectTakeControl(this);
         OnTakeControl(playerController);
         if (playerController.IsLocal) networkObject.RequestStateAuthority();
+        if (!string.IsNullOrEmpty(TooltipText)) ToolTipController.PushTooltip(TooltipText);
     }
 
     public void RelieveControl()
     {
         controllingPlayer.OnObjectRelieveControl(this);
         controllingPlayer = null;
+        if (!string.IsNullOrEmpty(TooltipText)) ToolTipController.PopTooltip(TooltipText);
     }
 
     protected virtual void OnTakeControl(PlayerNetworkController playerNetworkController)

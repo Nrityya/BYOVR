@@ -79,6 +79,11 @@ public class ControllerInputHelper
         return GetButtonUp("js3", "js0");
     }
 
+    static public bool IsMenuUp()
+    {
+        return GetButtonUp("js9", "js11");
+    }
+
     static private bool GetButtonDown(string windowsName, string androidName)
     {
         if (isWindows)
