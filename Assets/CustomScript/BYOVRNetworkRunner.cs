@@ -34,7 +34,7 @@ public class BYOVRNetworkRunner : MonoBehaviour, INetworkRunnerCallbacks
         await runner.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
-            SessionName = "TestRoom22",
+            SessionName = "TestRoom2",
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });

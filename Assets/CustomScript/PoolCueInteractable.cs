@@ -24,6 +24,8 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
 
     readonly List<PoolTarget> cachedTargets = new();
 
+    protected override string TooltipText => "X - Drop\nA - Select Ball\nY - Hit Ball\nJoystick - Rotate";
+
     public void Start()
     {
         SetupInteractable();
