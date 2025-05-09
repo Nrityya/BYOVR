@@ -26,7 +26,7 @@ public class PlayerInputAnimator : NetworkBehaviour
             // Debug.Log("N pressed");
             networkAnimator.SetTrigger("Wave", true);
         } 
-        if(Mathf.Abs(Input.GetAxis("Horizontal"))>0.1f || Mathf.Abs(Input.GetAxis("Vertical"))>0.1f)
+        if(Mathf.Abs(Input.GetAxis("Horizontal"))>0.2f || Mathf.Abs(Input.GetAxis("Vertical"))>0.2f)
         {   
             // Debug.Log("Moving");
             networkAnimator.SetTrigger("Walk", true);
