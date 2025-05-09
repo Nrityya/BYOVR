@@ -50,9 +50,10 @@ public class UnoHand : MonoBehaviour
         img.texture = cardTextures[(int)card.type];
         img.color = card.color switch
         {
-            CardColor.BLUE => Color.blue,
+            CardColor.BLUE => Color.cyan,
             CardColor.RED => Color.red,
             CardColor.YELLOW => Color.yellow,
+            CardColor.GREEN => Color.green,
             _ => Color.white,
         };
         img.color = new Color(img.color.r, img.color.g, img.color.b, 0.6f);

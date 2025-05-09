@@ -100,9 +100,10 @@ public class UnoDeck : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
         topCardRenderer.material = cardMaterials[(int)card.type];
         topCardRenderer.material.color = card.color switch
         {
-            CardColor.BLUE => Color.blue,
+            CardColor.BLUE => Color.cyan,
             CardColor.RED => Color.red,
             CardColor.YELLOW => Color.yellow,
+            CardColor.GREEN => Color.green,
             _ => Color.white,
         };
     }
