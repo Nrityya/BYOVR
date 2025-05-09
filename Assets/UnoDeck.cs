@@ -14,6 +14,7 @@ public class UnoDeck : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     float initialYPos;
 
     MeshRenderer deckRenderer;
+    Outline outlineComponent;
 
     public void Awake()
     {
@@ -21,6 +22,12 @@ public class UnoDeck : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
         initialYPos = transform.position.y;
         topCardRenderer.material = backMaterial;
         deckRenderer = GetComponent<MeshRenderer>();
+
+        outlineComponent = gameObject.GetComponent<Outline>();
+        outlineComponent.enabled = false;
+        outlineComponent.OutlineWidth = 10f;
+        outlineComponent.OutlineColor = Color.yellow;
+        outlineComponent.OutlineMode = Outline.Mode.OutlineVisible;
     }
 
     public void Update()
@@ -84,10 +91,12 @@ public class UnoDeck : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        outlineComponent.enabled = unoController.LocalPlaying;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        outlineComponent.enabled = false;
     }
 
     public bool ShouldBeSelected(PointerEventData pointerEventData)

@@ -37,6 +37,7 @@ public class UnoHand : MonoBehaviour
             float alpha = 0.75f;
             if (i == selectedCard)
             {
+
                 alpha = 1;
             }
             card.color = new Color(card.color.r, card.color.g, card.color.b, alpha);

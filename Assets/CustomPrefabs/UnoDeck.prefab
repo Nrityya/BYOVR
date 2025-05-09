@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4930160456541895591}
   - component: {fileID: 5668238475408940438}
   - component: {fileID: 257128674097480892}
+  - component: {fileID: 7593518464355474306}
   m_Layer: 0
   m_Name: UnoDeck
   m_TagString: Untagged
@@ -142,6 +143,24 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7bc7bb983977d6247af78f60f43c8759, type: 2}
   - {fileID: 2100000, guid: 84f857d8cb12bef4c8bd9e651197e4df, type: 2}
   - {fileID: 2100000, guid: 452af639be18d0c42a3ab6b44f266571, type: 2}
+--- !u!114 &7593518464355474306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2630236667712491239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3605480064916261374
 GameObject:
   m_ObjectHideFlags: 0
