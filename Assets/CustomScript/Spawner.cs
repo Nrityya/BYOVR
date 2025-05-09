@@ -3,9 +3,8 @@ using Fusion;
 using Photon.Realtime;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : NetworkBehaviour
 {
-    public NetworkRunner runner; // Reference to the NetworkRunner
     public NetworkPrefabRef prefabRef; // Reference to the network prefab
     public int limit = 10;
     public Vector3 position;
@@ -15,15 +14,15 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        if (runner == null)
-        {
-            Debug.LogError("NetworkRunner is not assigned!");
-            return;
-        }
+        RpcSpawn();
+    }
 
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    void RpcSpawn()
+    {
         // Spawn a new networked object
-        NetworkObject spawnedObject = runner.Spawn(prefabRef, transform.position + position, rotation);
-        if(parent) 
+        NetworkObject spawnedObject = Runner.Spawn(prefabRef, transform.position + position, rotation);
+        if (parent)
         {
             spawnedObject.transform.SetParent(parent.transform);
         }
@@ -32,8 +31,7 @@ public class Spawner : MonoBehaviour
         {
             // Remove the oldest object from the queue and despawn it
             NetworkObject oldestObject = spawned.Dequeue();
-            runner.Despawn(oldestObject);
+            Runner.Despawn(oldestObject);
         }
     }
-
 }
