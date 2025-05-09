@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Fusion;
 using Fusion.Addons.Physics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -135,8 +134,8 @@ public class PoolCueInteractable : Interactable, IStateAuthorityChanged
 
         transform.position = body.transform.position - new Vector3(capsuleCollider.height, 0, 0);
         // transform.rotation = Quaternion.Euler(0, 0, 0);
-        transform.rotation = Quaternion.Euler(0, playerCamera.transform.rotation.y,0);
-        
+        transform.rotation = Quaternion.Euler(0, playerCamera.transform.rotation.y, 0);
+
 
         Destroy(joint);
         var hinge = gameObject.AddComponent<HingeJoint>();

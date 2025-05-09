@@ -20,8 +20,8 @@ public class UnoHand : MonoBehaviour
         if (cardImages.Count == 0 || PlayerNetworkController.localPlayer.movementEnabled) return;
 
         int cardChange = 0;
-        if (ControllerInputHelper.IsYButtonDown()) cardChange -= 1;
-        if (ControllerInputHelper.IsADown()) cardChange += 1;
+        if (ControllerInputHelper.IsYButtonDown() || Input.GetKeyDown(KeyCode.D)) cardChange -= 1;
+        if (ControllerInputHelper.IsADown() || Input.GetKeyDown(KeyCode.A)) cardChange += 1;
         selectedCard += cardChange;
         if (selectedCard >= cardImages.Count) selectedCard = 0;
         if (selectedCard < 0) selectedCard = cardImages.Count - 1;
