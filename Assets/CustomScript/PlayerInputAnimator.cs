@@ -14,13 +14,13 @@ public class PlayerInputAnimator : NetworkBehaviour
     {
         if (!HasInputAuthority) return;
         // A in controlelr
-        if (Input.GetKeyDown(KeyCode.JoystickButton10))
+        if (ControllerInputHelper.IsADown())
         {
             Debug.Log("P pressed");
             networkAnimator.SetTrigger("Point", true);
         }
         // Y in controller
-        if (Input.GetKeyDown(KeyCode.JoystickButton3))
+        if (ControllerInputHelper.IsYButtonDown())
         {
             Debug.Log("N pressed");
             networkAnimator.SetTrigger("Wave", true);

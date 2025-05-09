@@ -1,9 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallDetection : MonoBehaviour
-{  
-    public enum Type{
+{
+    public enum Type
+    {
         Cup,
         Pool
     }
@@ -13,29 +13,29 @@ public class BallDetection : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        c=GetComponent<SphereCollider>();
+        c = GetComponent<SphereCollider>();
         ps = GetComponent<ParticleSystem>();
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("BeerPongBall") && type==Type.Cup)
-        {   
+        if (other.CompareTag("BeerPongBall") && type == Type.Cup)
+        {
             ps.Play();
             Destroy(other.gameObject);
-            
+
             SendMessageUpwards("RpcFlipCup", SendMessageOptions.DontRequireReceiver);
         }
-        else if (other.CompareTag("PoolBall") && type==Type.Pool)
+        else if (other.CompareTag("PoolBall") && type == Type.Pool)
         {
             ps.Play();
             other.SendMessage("RpcPocketed", SendMessageOptions.DontRequireReceiver);
-            
+
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
