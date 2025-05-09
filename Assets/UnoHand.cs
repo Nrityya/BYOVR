@@ -33,11 +33,12 @@ public class UnoHand : MonoBehaviour
             var z = Mathf.Lerp(-angleRange, angleRange, (i + 1) / (float)cardImages.Count);
             var angles = card.transform.rotation.eulerAngles;
             card.transform.rotation = Quaternion.Euler(angles.x, angles.y, z);
-
+            card.transform.localPosition = new Vector3(50,-75,1);
             float alpha = 0.75f;
             if (i == selectedCard)
             {
-
+                card.transform.localPosition = new Vector3(50,-75,-30);
+                card.transform.SetAsLastSibling();
                 alpha = 1;
             }
             card.color = new Color(card.color.r, card.color.g, card.color.b, alpha);
