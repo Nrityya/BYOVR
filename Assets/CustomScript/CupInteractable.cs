@@ -3,14 +3,14 @@ using UnityEngine.EventSystems;
 using System;
 using Fusion;
 using UnityEngine.UIElements;
-public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerEnterHandler,IPointerExitHandler
+public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     bool flipped;
     NetworkTransform networkTransform;
     Outline outlineComponent;
     Vector3 originalPosition;
     Vector3 flippedPosition;
-    public bool isHovered = false; 
+    public bool isHovered = false;
     SphereCollider checkerCollider;
 
     void Start()
@@ -23,10 +23,9 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
         outlineComponent.OutlineColor = Color.yellow;
         outlineComponent.OutlineMode = Outline.Mode.OutlineVisible;
         flipped = false;
-        
+
         originalPosition = transform.position;
-        flippedPosition = originalPosition + new Vector3(0f, 0.09149997f*2f, 0f);
-        RpcReset();
+        flippedPosition = originalPosition + new Vector3(0f, 0.09149997f * 2f, 0f);
 
     }
 
@@ -36,7 +35,6 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
         if (!flipped)
         {
             networkTransform.Teleport(flippedPosition, Quaternion.Euler(0, 0, 180f));
-            
         }
         else
         {
@@ -44,7 +42,6 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
         }
         checkerCollider.enabled = flipped;
         flipped = !flipped;
-        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -71,5 +68,4 @@ public class CupInteractable : NetworkBehaviour, IPointerClickHandler, IPointerE
             RpcFlipCup();
         }
     }
-
 }
