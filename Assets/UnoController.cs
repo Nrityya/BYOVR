@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Fusion;
 using UnityEngine;
 
@@ -102,10 +103,14 @@ public class UnoController : NetworkBehaviour
     {
         if (fromDiscard)
         {
+            UnoCard lastCard = DiscardDeck.Last<UnoCard>();
+            DiscardDeck.Remove(lastCard);
             foreach (var card in DiscardDeck)
             {
                 DrawDeck.Add(card);
             }
+            DiscardDeck.Clear();
+            DiscardDeck.Add(lastCard);
         }
         else
         {
@@ -135,8 +140,8 @@ public class UnoController : NetworkBehaviour
                     }
                 }
             }
+            DiscardDeck.Clear();
         }
-        DiscardDeck.Clear();
     }
 }
 
