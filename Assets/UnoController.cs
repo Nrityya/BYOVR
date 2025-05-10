@@ -29,7 +29,7 @@ public class UnoController : NetworkBehaviour
     public override void Spawned()
     {
         IsSpawned = true;
-        ResetDecks();
+        if (HasStateAuthority) ResetDecks();
     }
 
     public void LocalPlayerJoin()
